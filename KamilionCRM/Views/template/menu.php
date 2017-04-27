@@ -18,12 +18,12 @@
 					<i class="fa fa-user fa-fw"></i> NOMBRE USUARIO <i class="fa fa-caret-down"></i>
 				</a>
 				<ul class="dropdown-menu dropdown-user">
-					<li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
+					<li><a href="<?php echo URL; ?>admin/"><i class="fa fa-user fa-fw"></i> Perfil</a>
 					</li>
 					<li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
 					</li>
 					<li class="divider"></li>
-					<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
+					<li><a href="<?php echo URL?>"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
 					</li>
 				</ul>
 				<!-- /.dropdown-user -->
@@ -54,7 +54,7 @@
 						</ul>
 						<!-- /.nav-second-level -->
 					</li>
-					
+
 					<li>
 						<a href="#"><i class="fa fa-wrench fa-fw"></i> Secciones<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
