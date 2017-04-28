@@ -14,7 +14,7 @@
 	<body>
 	<?php include TEMPLATE."menu.php"; ?>
 	<div id="page-wrapper">
-	
+
 <?php
 		}
 

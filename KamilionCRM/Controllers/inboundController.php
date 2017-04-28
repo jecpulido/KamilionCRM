@@ -14,6 +14,10 @@
 
 		}
 
+		public function asignar(){
+
+		}
+
 		public function agregar(){
 
 		}

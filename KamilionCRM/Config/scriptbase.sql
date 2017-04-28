@@ -168,3 +168,5 @@ CREATE TABLE Falla_Tecnica (
   FOREIGN KEY(Division_Politica_divp_if)
     REFERENCES Division_Politica(divp_if)
 );
+
+ALTER TABLE `personal` ADD `per_genero` ENUM('M','F') NOT NULL AFTER `per_fechaNacimeinto`, ADD `per_rutaFoto` VARCHAR(200) NOT NULL AFTER `per_genero`;

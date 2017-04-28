@@ -15,6 +15,8 @@
     private $per_correo;
     private $per_profesion;
     private $per_fechaNacimeinto;
+    private $per_genero;
+    private $per_rutaFoto;
     private $per_estado;
 
     /*    *Metodos*    */
@@ -39,7 +41,7 @@
     }
     //insertar
     public function add(){
-      $sql = "INSERT INTO personal(per_codigo, Complemento_Admin_ca_id, Cargo_carg_id, per_documento, per_nombre, per_apellidos, per_telefono, per_celular, per_direccion, per_correo, per_profesion, per_fechaNacimeinto, per_estado) VALUES (null,,,,,,,,,,,,)";
+      $sql = "INSERT INTO personal(per_codigo, Complemento_Admin_ca_id, Cargo_carg_id, per_documento, per_nombre, per_apellidos, per_telefono, per_celular, per_direccion, per_correo, per_profesion, per_fechaNacimeinto,per_genero,per_rutaFoto per_estado) VALUES (null,,,,,,,,,,,,)";
       $this->con->consultaSimple($sql);
     }
     //Eliminar

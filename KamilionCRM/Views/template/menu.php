@@ -37,7 +37,7 @@
 				<ul class="nav" id="side-menu">
 					<li class="sidebar-search">
 						<div class="input-group custom-search-form">
-							<input type="text" class="form-control" placeholder="Buscar producto...">
+							<input type="text" class="form-control" placeholder="Buscar caso..." >
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="button">
 									<i class="fa fa-search"></i>
@@ -47,31 +47,49 @@
 						<!-- /input-group -->
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-wrench fa-fw"></i> Estudiantes<span class="fa arrow"></span></a>
+						<a href="#"><i class="fa fa-gear"></i> Administracion<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="<?php echo URL; ?>estudiantes">Listado</a></li>
-			            	<li><a href="<?php echo URL; ?>estudiantes/agregar">Agregar</a></li>
+							<li>
+								<a href="#"><i class="fa fa-male"></i> Personal<span class="fa arrow"></span></a>
+								<ul class="nav nav-third-level">
+									<li><a href="<?php echo URL; ?>admin/agregarPersona" class="fa fa-plus"> Agregar</a></li>
+					        <li><a href="<?php echo URL; ?>admin/listarPersona" class="fa fa-list-alt"> Listar</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-user"></i> Usuarios<span class="fa arrow"></span></a>
+								<ul class="nav nav-third-level">
+									<li><a href="<?php echo URL; ?>admin/agregarUsuario" class="fa fa-plus"> Agregar</a></li>
+					        <li><a href="<?php echo URL; ?>admin/listarUsuario" class="fa fa-list-alt"> Listar</a></li>
+								</ul>
+							</li>
 						</ul>
+
 						<!-- /.nav-second-level -->
 					</li>
 
 					<li>
-						<a href="#"><i class="fa fa-wrench fa-fw"></i> Secciones<span class="fa arrow"></span></a>
+						<a href="#"><i class="fa fa-pencil"></i> Inbound<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="<?php echo URL; ?>secciones">Listado</a></li>
-			            	<li><a href="<?php echo URL; ?>secciones/agregar">Agregar</a></li>
+							<li><a href="<?php echo URL; ?>inbound/asignar" class="fa fa-list-alt"> Asignar</a></li>
+							<li><a href="<?php echo URL; ?>inbound/registro" class="fa fa-edit"> Registro</a></li>
+            	<li><a href="<?php echo URL; ?>inbound/consulta" class="fa fa-search"> Consulta</a></li>
 						</ul>
 						<!-- /.nav-second-level -->
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-wrench fa-fw"></i> Administracion<span class="fa arrow"></span></a>
+						<a href="#"><i class="fa fa-level-up"></i> Escalamiento<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li>
-								<a href="#">Usuarios</a>
-							</li>
-							<li>
-								<a href="#">Privilegios</a>
-							</li>
+							<li><a href="<?php echo URL; ?>escalamiento/asignacion" class="fa fa-list-alt"> Asignacion</a></li>
+							<li><a href="<?php echo URL; ?>escalamiento/registro" class="fa fa-edit"> Registro</a></li>
+							<li><a href="<?php echo URL; ?>escalamiento/consulta" class="fa fa-search"> Consulta</a></li>
+						</ul>
+						<!-- /.nav-second-level -->
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-bar-chart-o"></i> Informes<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="#" class="fa fa-list-ol"> Productividad</a></li>
 						</ul>
 						<!-- /.nav-second-level -->
 					</li>

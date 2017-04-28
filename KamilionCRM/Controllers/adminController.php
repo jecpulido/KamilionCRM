@@ -1,6 +1,6 @@
 <?php namespace Controllers;
 
-	class ComplementoDatosController{
+	class adminController{
 
     /*    *Atributos*    */
 
@@ -14,15 +14,11 @@
 
 		}
 
-		public function agregar(){
+		public function agregarPersona(){
 
 		}
 
-		public function editar(){
-
-		}
-
-		public function eliminar(){
+		public function listarPersona(){
 
 		}
 	}
