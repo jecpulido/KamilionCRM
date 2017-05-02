@@ -24,3 +24,14 @@ footer{
 .panelregistro{
 	padding: 10px;
 }
+.my-group .form-control{
+		display: inline;
+    width:47%;
+}
+/*
+
+input:required:invalid {
+	-webkit-box-shadow: inset 0 -2px 0 #da0000;
+	box-shadow: inset 0 -2px 0 #da0000;
+
+}*/

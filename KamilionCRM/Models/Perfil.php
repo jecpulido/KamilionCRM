@@ -1,16 +1,22 @@
 <?php namespace Models;
 
-  class Perfil{
+
+
+use Lib\etCRM;
+
+class Perfil{
 
     /*    *Atributos*    */
     private $perf_id;
     private $perf_descripcion;
     private $perf_permisos;
+    private $atributos = array("perf_id","perf_descripcion","perf_permisos");
+    private $var;
 
     /*    *Metodos*    */
     //Constructor
     public function __construct(){
-
+      $this->con = new etCRM();
     }
 
     //Metodo set
@@ -21,33 +27,42 @@
     public function get($atributo){
       return $this->$atributo;
     }
+
     //Buscar Todo
     public function listar(){
-      $sql = "SELECT * FROM perfil";
-      $datos = $this->con->consultaRetorno($sql);
+      $this->param = $this->validarAtributos();
+      $datos = $this->con->select("Perfil",null,$this->param);
       return $datos;
     }
     //insertar
     public function add(){
-      $sql = "INSERT INTO perfil(perf_id, perf_descripcion, perf_permisos) VALUES (null,'','')";
-      $this->con->consultaSimple($sql);
+        $this->param = $this->validarAtributos();
+        $this->con->insert("Perfil",$this->param);
     }
+
     //Eliminar
     public function delete(){
-      $sql = "DELETE FROM perfil WHERE perf_id='{$this->perf_id}'";
-      $this->con->consultaSimple($sql);
+
     }
     //Actualizar
     public function edit(){
-      $sql = "UPDATE perfil SET perf_descripcion='',perf_permisos='' WHERE perf_id='{$this->perf_id}'";
-      $this->con->consultaSimple($sql);
+
     }
     //Buscar por filtro
     public function view(){
-      $sql = "SELECT * FROM perfil WHERE perf_id='{$this->perf_id}'";
-      $datos = $this->con->consultaRetorno($sql);
-      $row = mysqli_fetch_assoc($datos);
-      return $row;
+
+    }
+
+    public function validarAtributos(){
+        foreach ($this->atributos as $v){
+            if(!empty($this->get($v))){
+                $this->var[$v] = $this->get($v);
+            }
+        }
+        if (empty($this->var)){
+            $this->var = null;
+        }
+        return $this->var;
     }
 
   }

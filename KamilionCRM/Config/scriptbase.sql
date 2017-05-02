@@ -170,3 +170,4 @@ CREATE TABLE Falla_Tecnica (
 );
 
 ALTER TABLE `personal` ADD `per_genero` ENUM('M','F') NOT NULL AFTER `per_fechaNacimeinto`, ADD `per_rutaFoto` VARCHAR(200) NOT NULL AFTER `per_genero`;
+ALTER TABLE `personal` ADD `per_tipoDocumento` VARCHAR(3) NOT NULL AFTER `per_documento`;
