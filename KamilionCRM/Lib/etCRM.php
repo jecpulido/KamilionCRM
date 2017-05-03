@@ -13,66 +13,76 @@ class etCRM{
     private $con;
 
     public function __construct(){
+    try{
         $this->con = new \Models\Conexion();
+      }catch (\PDOException $PDOException){
+          throw $PDOException;
+      }catch (\Exception $exception){
+          throw  $exception;
+      }
     }
 
 
     public function insert($tabla,$var){
-        $c=$this->con->getConexion();
-        foreach ($var as $key => $v){
-            $this->col =$this->col. $key.",";
-            $this->value =$this->value.":".$key.",";
-        }
-        $this->col = substr($this->col,0,strlen($this->col)-1);
-        $this->value = substr($this->value,0,strlen($this->value)-1);
-        $sql = "INSERT INTO $tabla($this->col) VALUES ($this->value)";
-        //echo $sql;
-        $statement=$c->prepare($sql);
-        foreach ($var as $key => &$v){
-            $statement->bindparam(":".$key,$v);
-            //echo ":".$key."(".$v.")<br>";
-            //echo $v."<br>";
-        }
         try{
+            $c=$this->con->getConexion();
+            foreach ($var as $key => $v){
+                $this->col =$this->col. $key.",";
+                $this->value =$this->value.":".$key.",";
+            }
+            $this->col = substr($this->col,0,strlen($this->col)-1);
+            $this->value = substr($this->value,0,strlen($this->value)-1);
+            $sql = "INSERT INTO $tabla($this->col) VALUES ($this->value)";
+            //echo $sql;
+            $statement=$c->prepare($sql);
+            foreach ($var as $key => &$v){
+                $statement->bindparam(":".$key,$v);
+                //echo ":".$key."(".$v.")<br>";
+                //echo $v."<br>";
+            }
+
             if($statement->execute()){
-                $_POST = null;
+              return true;
             }else{
-                throw new \Exception("Error en registro");
+              return false;
             }
         }catch (\PDOException $PDOException){
-            echo $PDOException->getMessage();
+            throw $PDOException;
         }catch (\Exception $exception){
-            echo  $exception->getMessage();
+            throw  $exception;
         }
-
-
-
-
     }
 
     public function update($tabla,$var){
-
-        foreach ($var as $key => $v){
-            $this->col =$this->col. $key.",";
-            $this->value =$this->value.":".$key.",";
-        }
-        $this->col = substr($this->col,0,strlen($this->col)-1);
-        $this->value = substr($this->value,0,strlen($this->value)-1);
-        $sql = "INSERT INTO $tabla($this->col) VALUES ($this->value)";
-        $c=$this->con->getConexion();
-        $statement=$c->prepare($sql);
-        foreach ($var as $key => &$v){
-            $statement->bindparam(":".$key,$v);
-        }
-        if(!$statement){
-            echo "Error en registro";
-        }else{
-            $statement->execute();
-            echo "Perfil ingresado";
-        }
+      try{
+          foreach ($var as $key => $v){
+              $this->col =$this->col. $key.",";
+              $this->value =$this->value.":".$key.",";
+          }
+          $this->col = substr($this->col,0,strlen($this->col)-1);
+          $this->value = substr($this->value,0,strlen($this->value)-1);
+          $sql = "INSERT INTO $tabla($this->col) VALUES ($this->value)";
+          $c=$this->con->getConexion();
+          $statement=$c->prepare($sql);
+          foreach ($var as $key => &$v){
+              $statement->bindparam(":".$key,$v);
+          }
+          if(!$statement){
+              echo "Error en registro";
+          }else{
+              $statement->execute();
+              echo "Perfil ingresado";
+          }
+      }catch (\PDOException $PDOException){
+          $msj = $PDOException->getMessage();
+      }catch (\Exception $exception){
+          throw  $exception->getMessage();
+      }
     }
 
     public function select($tabla,$col=null,$where=null){
+    try{
+        $datos=null;
         if (!empty($where)){
             foreach ($where as $key => $v){
                 $this->col =$this->col. $key."=:".$v;
@@ -93,11 +103,22 @@ class etCRM{
         while ($result = $statement->fetch()){
             $datos[]=$result;
         }
+      }catch (\PDOException $PDOException){
+          $msj = $PDOException->getMessage();
+      }catch (\Exception $exception){
+          $msj =  $exception->getMessage();
+      }
         return $datos;
     }
 
     public function delete(){
+      try{
 
+      }catch (\PDOException $PDOException){
+          throw $PDOException;
+      }catch (\Exception $exception){
+          throw  $exception;
+      }
     }
 
 

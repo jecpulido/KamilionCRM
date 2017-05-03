@@ -12,7 +12,7 @@
 			$argumento = $request->getArgumento();
 			if(is_readable($ruta)){
 				require_once $ruta;
-				$mostrar = "Controllers\\" . $controlador;		
+				$mostrar = "Controllers\\" . $controlador;
 				$controlador = new $mostrar;
 				if(!isset($argumento)){
 					$datos = call_user_func(array($controlador, $metodo));

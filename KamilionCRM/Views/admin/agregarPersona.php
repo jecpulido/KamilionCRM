@@ -87,7 +87,7 @@
                         <div class="form-registro form-group col-md-6">
                             <label for="per_carg_id" class="control-label">Cargo</label>
                             <select  name="Cargo_carg_id" class="form-control" required>
-                                <?php foreach ($datos as $row){ ?>
+                                <?php foreach ($datos[0] as $row){ ?>
                                     <option value="<?php echo $row['carg_id']; ?>"><?php echo $row['carg_descripcion']; ?></option>
                                 <?php } ?>
                             </select>

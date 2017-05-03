@@ -44,8 +44,18 @@ class Persona{
     }
     //insertar
     public function add(){
+      try {
         $this->param = $this->validarAtributos();
-        $this->con->insert("Personal",$this->param);
+        if($this->con->insert("Personal",$this->param)){
+          return true;
+        }else{
+          return false;
+        }
+      } catch (Exception $e) {
+        throw new $e;
+      }
+
+
     }
     //Eliminar
     public function remove(){

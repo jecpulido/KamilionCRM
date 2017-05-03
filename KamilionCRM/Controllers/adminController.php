@@ -10,8 +10,7 @@ class adminController{
 		private $perfil;
 		private $cargo;
 		private $complementoDatos;
-
-    /*    *Metodos*    */
+        /*    *Metodos*    */
     //Constructor
 		public function __construct(){
 			$this->persona = new Persona();
@@ -26,39 +25,44 @@ class adminController{
 		}
 
 		public function agregarPersona(){
-            if(!$_POST){
-                $datos = $this->cargo->listar();
-                return $datos;
+      try {
+        if(!$_POST){
+            //$datos = $this->cargo->listar();
+            $perfil = $this->cargo->listar();
+            $datos= array($perfil);
+            return $datos;
+        }else{
+            $permitidos = array("image/jpeg", "image/png", "image/gif", "image/jpg");
+            $limite = 700;
+            if(in_array($_FILES['foto']['type'], $permitidos) && $_FILES['foto']['size'] <= $limite * 1024){
+                $ext = explode(".", $_FILES['foto']['name']);
+                $nombre = $_POST['per_codigo'].".".$ext[1];
+                $ruta = "Views" . DS . "template". DS . "imagenes" . DS . "avatars" . DS . $nombre;
+                move_uploaded_file($_FILES['foto']['tmp_name'], $ruta);
+                $this->persona->set("per_codigo", $_POST['per_codigo']);
+                $this->persona->set("Complemento_Admin_ca_id", $_POST['Complemento_Admin_ca_id']);
+                $this->persona->set("Cargo_carg_id", $_POST['Cargo_carg_id']);
+                $this->persona->set("per_documento", $_POST['per_documento']);
+                $this->persona->set("per_tipoDocumento", $_POST['per_tipoDocumento']);
+                $this->persona->set("per_nombre", $_POST['per_nombre']);
+                $this->persona->set("per_apellidos", $_POST['per_apellidos']);
+                $this->persona->set("per_telefono", $_POST['per_telefono']);
+                $this->persona->set("per_celular", $_POST['per_celular']);
+                $this->persona->set("per_direccion", $_POST['per_direccion']);
+                $this->persona->set("per_correo", $_POST['per_correo']);
+                $this->persona->set("per_profesion", $_POST['per_profesion']);
+                $this->persona->set("per_fechaNacimiento", $_POST['per_fechaNacimiento']);
+                $this->persona->set("per_genero", $_POST['per_genero']);
+                $this->persona->set("per_rutaFoto", $nombre);
+                $this->persona->set("per_estado", 1);
+                $this->persona->add();
             }else{
-                $permitidos = array("image/jpeg", "image/png", "image/gif", "image/jpg");
-                $limite = 700;
-                if(in_array($_FILES['foto']['type'], $permitidos) && $_FILES['foto']['size'] <= $limite * 1024){
-                    $ext = explode(".", $_FILES['foto']['name']);
-                    $nombre = $_POST['per_codigo'].".".$ext[1];
-                    $ruta = "Views" . DS . "template". DS . "imagenes" . DS . "avatars" . DS . $nombre;
-                    move_uploaded_file($_FILES['foto']['tmp_name'], $ruta);
-                    $this->persona->set("per_codigo", $_POST['per_codigo']);
-                    $this->persona->set("Complemento_Admin_ca_id", $_POST['Complemento_Admin_ca_id']);
-                    $this->persona->set("Cargo_carg_id", $_POST['Cargo_carg_id']);
-                    $this->persona->set("per_documento", $_POST['per_documento']);
-                    $this->persona->set("per_tipoDocumento", $_POST['per_tipoDocumento']);
-                    $this->persona->set("per_nombre", $_POST['per_nombre']);
-                    $this->persona->set("per_apellidos", $_POST['per_apellidos']);
-                    $this->persona->set("per_telefono", $_POST['per_telefono']);
-                    $this->persona->set("per_celular", $_POST['per_celular']);
-                    $this->persona->set("per_direccion", $_POST['per_direccion']);
-                    $this->persona->set("per_correo", $_POST['per_correo']);
-                    $this->persona->set("per_profesion", $_POST['per_profesion']);
-                    $this->persona->set("per_fechaNacimiento", $_POST['per_fechaNacimiento']);
-                    $this->persona->set("per_genero", $_POST['per_genero']);
-                    $this->persona->set("per_rutaFoto", $nombre);
-                    $this->persona->set("per_estado", 1);
-                    $this->persona->add();
-                    //header("Location: " . URL . "admin");
-                }else{
-                    return "Tipo de archivo no valido";
-                }
+                return "Tipo de archivo no valido";
             }
+        }
+      } catch (Exception $e) {
+        $msj = "Error en registro [".$e->getMessage()."]";
+      }
 		}
 
 		public function listarPersona(){
