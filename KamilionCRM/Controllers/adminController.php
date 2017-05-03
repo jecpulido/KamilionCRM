@@ -33,10 +33,10 @@ class adminController{
                 $permitidos = array("image/jpeg", "image/png", "image/gif", "image/jpg");
                 $limite = 700;
                 if(in_array($_FILES['foto']['type'], $permitidos) && $_FILES['foto']['size'] <= $limite * 1024){
-                    $nombre = date('is') . $_FILES['foto']['name'];
+                    $ext = explode(".", $_FILES['foto']['name']);
+                    $nombre = $_POST['per_codigo'].".".$ext[1];
                     $ruta = "Views" . DS . "template". DS . "imagenes" . DS . "avatars" . DS . $nombre;
                     move_uploaded_file($_FILES['foto']['tmp_name'], $ruta);
-					echo $_POST['per_apellidos'];
                     $this->persona->set("per_codigo", $_POST['per_codigo']);
                     $this->persona->set("Complemento_Admin_ca_id", $_POST['Complemento_Admin_ca_id']);
                     $this->persona->set("Cargo_carg_id", $_POST['Cargo_carg_id']);
@@ -55,6 +55,8 @@ class adminController{
                     $this->persona->set("per_estado", 1);
                     $this->persona->add();
                     //header("Location: " . URL . "admin");
+                }else{
+                    return "Tipo de archivo no valido";
                 }
             }
 		}

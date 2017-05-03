@@ -25,7 +25,7 @@ class etCRM{
         }
         $this->col = substr($this->col,0,strlen($this->col)-1);
         $this->value = substr($this->value,0,strlen($this->value)-1);
-        $sql = "INSERT INTOOO $tabla($this->col) VALUES ($this->value)";
+        $sql = "INSERT INTO $tabla($this->col) VALUES ($this->value)";
         //echo $sql;
         $statement=$c->prepare($sql);
         foreach ($var as $key => &$v){
@@ -34,12 +34,19 @@ class etCRM{
             //echo $v."<br>";
         }
         try{
-            $statement->execute();
-        }catch (\Exception $e){
-            echo $e->getMessage();
-        }catch (\PDOException $ee){
-            echo $ee->getMessage();
+            if($statement->execute()){
+                $_POST = null;
+            }else{
+                throw new \Exception("Error en registro");
+            }
+        }catch (\PDOException $PDOException){
+            echo $PDOException->getMessage();
+        }catch (\Exception $exception){
+            echo  $exception->getMessage();
         }
+
+
+
 
     }
 

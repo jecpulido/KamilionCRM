@@ -15,6 +15,7 @@
 		public function __construct(){
 			// $this->con =  new \mysqli($this->datos["host"],$this->datos["user"],$this->datos["pass"],$this->datos["db"]);
 			$this->con = new \PDO("mysql:host=".$this->datos["host"].";dbname=".$this->datos["db"],$this->datos["user"],$this->datos["pass"]);
+            $this->con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 		}
 
 
