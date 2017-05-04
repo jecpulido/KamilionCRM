@@ -32,7 +32,7 @@
                         <!-- Nombre -->
                         <div class="form-registro form-group col-md-6">
                             <label for="per_nombre" class="control-label">Nombres</label>
-                            <input class="form-control" name="per_nombre" type="text" required>
+                            <input class="form-control" name="per_nombre" type="text" >
                         </div>
                         <!-- apellido -->
                         <div class="form-registro form-group col-md-6">

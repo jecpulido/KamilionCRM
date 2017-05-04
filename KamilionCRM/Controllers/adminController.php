@@ -2,7 +2,6 @@
 
 use Models\Cargo;
 use Models\Persona;
-
 class adminController{
 
     /*    *Atributos*    */
@@ -13,8 +12,14 @@ class adminController{
         /*    *Metodos*    */
     //Constructor
 		public function __construct(){
-			$this->persona = new Persona();
-			$this->cargo = new Cargo();
+      try {
+        $this->persona = new Persona();
+        $this->cargo = new Cargo();
+      } catch (Exception $e) {
+        echo "ERRORR";
+      }
+
+
 
 		}
 
@@ -32,6 +37,7 @@ class adminController{
             $datos= array($perfil);
             return $datos;
         }else{
+            \Lib\Filtro::filtro_string($_POST["per_nombre"],"Nombre");
             $permitidos = array("image/jpeg", "image/png", "image/gif", "image/jpg");
             $limite = 700;
             if(in_array($_FILES['foto']['type'], $permitidos) && $_FILES['foto']['size'] <= $limite * 1024){
@@ -57,11 +63,11 @@ class adminController{
                 $this->persona->set("per_estado", 1);
                 $this->persona->add();
             }else{
-                return "Tipo de archivo no valido";
+                echo "Tipo de archivo no valido";
             }
         }
-      } catch (Exception $e) {
-        $msj = "Error en registro [".$e->getMessage()."]";
+      } catch (\Exception $exception) {
+        echo  $exception->getMessage();
       }
 		}
 

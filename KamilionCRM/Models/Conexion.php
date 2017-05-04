@@ -20,7 +20,7 @@
 			}catch (\PDOException $PDOException){
 					$msj = $PDOException->getMessage();
 			}catch (\Exception $exception){
-					throw  $exception->getMessage();
+					echo  $exception->getMessage();
 			}
 		}
 

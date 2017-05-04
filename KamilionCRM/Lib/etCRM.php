@@ -13,18 +13,12 @@ class etCRM{
     private $con;
 
     public function __construct(){
-    try{
         $this->con = new \Models\Conexion();
-      }catch (\PDOException $PDOException){
-          throw $PDOException;
-      }catch (\Exception $exception){
-          throw  $exception;
-      }
     }
 
 
     public function insert($tabla,$var){
-        try{
+       try{
             $c=$this->con->getConexion();
             foreach ($var as $key => $v){
                 $this->col =$this->col. $key.",";
@@ -40,16 +34,15 @@ class etCRM{
                 //echo ":".$key."(".$v.")<br>";
                 //echo $v."<br>";
             }
-
             if($statement->execute()){
               return true;
             }else{
               return false;
             }
         }catch (\PDOException $PDOException){
-            throw $PDOException;
+            echo "Upss! Error: ".$PDOException->getMessage();
         }catch (\Exception $exception){
-            throw  $exception;
+            echo "Upss! Error: ".$exception->getMessage();
         }
     }
 

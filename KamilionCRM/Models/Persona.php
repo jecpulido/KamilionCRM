@@ -46,13 +46,10 @@ class Persona{
     public function add(){
       try {
         $this->param = $this->validarAtributos();
-        if($this->con->insert("Personal",$this->param)){
-          return true;
-        }else{
-          return false;
-        }
-      } catch (Exception $e) {
-        throw new $e;
+        $value = $this->con->insert("Personal",$this->param);
+        return $value;
+      } catch (Exception $exception) {
+        echo "Upss! Error: ".$exception->getMessage();
       }
 
 

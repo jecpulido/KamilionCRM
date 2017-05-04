@@ -32,10 +32,10 @@ footer{
 	margin-right: 0px !important;
 	margin-left: 0px !important;
 }
-/*
 
-input:required:invalid {
+
+input:required:invalid:focus {
 	-webkit-box-shadow: inset 0 -2px 0 #da0000;
 	box-shadow: inset 0 -2px 0 #da0000;
 
-}*/
+}
