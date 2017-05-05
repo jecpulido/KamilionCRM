@@ -7,8 +7,6 @@
  */
 
 namespace Lib;
-
-
 class Filtro{
     public static function filtro_string($var=null,$nombre){
       try {
@@ -16,9 +14,11 @@ class Filtro{
           if(is_string($var)){
             return trim($var);
           }else{
-            throw new \Exception($nombre . "Debe ser de tipo texto",1);
+              header("Location: " . URL . "admin/agregarPesona");
+            throw new \Exception($nombre . " Debe ser de tipo texto",1);
           }
         }else{
+            header("Location: " . URL . "admin/agregarPesona");
           throw new \Exception("Por favor llene el campo ".$nombre,1);
         }
       }catch (\Exception $exception){
@@ -77,11 +77,27 @@ class Filtro{
 
     public static function llenar_lista($var){
         try {
-            $array = array(0=>'- Seleccione -')+$var;
-            return $array;
+            $sel = array();
+            foreach (array_keys($var[0]) as $key => &$v){
+                if(is_string($v)){
+                    $sel[] = $v;
+                }
+            }
+//            print_r($sel);
+            foreach ($sel as $key => &$v){
+               if (strpos($v, "id") ){
+                   $id = array($v=>"0");
+               }elseif (strpos($v, "desc") ){
+                   $id = $id + array($v=>"- Seleccione -");
+               }else{
+                   $id = $id + array($v=>"none");
+               }
+            }
+           array_unshift($var,$id);
+            return $var;
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 }
+?>

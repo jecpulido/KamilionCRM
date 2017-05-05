@@ -1,33 +1,32 @@
 <?php namespace Views;
 
-	$template = new Template();
+$template = new Template();
 
-	class Template{
+class Template{
 
-		public function __construct(){
-?>
-	<!DOCTYPE html>
-	<html lang="es">
-	<head>
-	<?php include TEMPLATE."head.php"; ?>
-	</head>
-	<body>
-	<?php include TEMPLATE."menu.php"; ?>
-	<div id="page-wrapper">
+    public function __construct(){
+        ?>
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <?php include TEMPLATE."head.php"; ?>
+        </head>
+        <body>
+        <?php include TEMPLATE."menu.php"; ?>
+        <div id="page-wrapper">
 
-<?php
-		}
+        <?php
+    }
 
-		public function __destruct(){
-?>
-	</div>
+    public function __destruct(){
+        ?>
+        </div>
 
-		<?php include TEMPLATE."scripts.php"; ?>
-	</body>
-	</html>
-<?php
-		}
+        <?php include TEMPLATE."scripts.php"; ?>
+        </body>
+        </html>
+        <?php
+    }
 
-	}
-
+}
 ?>

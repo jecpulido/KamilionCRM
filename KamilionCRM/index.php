@@ -7,12 +7,4 @@
 	Config\Autoload::run();
 	require_once "Views/template.php";
 	Config\Enrutador::run(new Config\Request());
-
-/*
-$perfil = new Models\Perfil();
-//$perfil->set("perf_id","22");
-$perfil->set("perf_descripcion","BBB");
-$perfil->set("perf_permisos","operacion");
-$perfil->add();
-*/
 ?>

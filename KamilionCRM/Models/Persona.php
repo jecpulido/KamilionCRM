@@ -46,10 +46,10 @@ class Persona{
     public function add(){
       try {
         $this->param = $this->validarAtributos();
-        $value = $this->con->insert("Personal",$this->param);
-        return $value;
+        $this->con->insert("Personal",$this->param);
+
       } catch (Exception $exception) {
-        echo "Upss! Error: ".$exception->getMessage();
+
       }
 
 
@@ -67,17 +67,16 @@ class Persona{
 
     }
 
-        public function validarAtributos(){
-            foreach ($this->atributos as $v){
-                if(!empty($this->get($v))){
-                    $this->var[$v] = $this->get($v);
-                }
+    public function validarAtributos(){
+        foreach ($this->atributos as $v){
+            if(!empty($this->get($v))){
+                $this->var[$v] = $this->get($v);
             }
-            if (empty($this->var)){
-                $this->var = null;
-            }
-            return $this->var;
         }
+        if (empty($this->var)){
+            $this->var = null;
+        }
+        return $this->var;
+    }
   }
-
  ?>

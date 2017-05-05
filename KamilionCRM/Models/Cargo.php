@@ -1,6 +1,8 @@
 <?php namespace Models;
 
-  class Cargo{
+  use Lib\Filtro;
+
+class Cargo{
 
     /*    *Atributos*    */
     private $carg_id;
@@ -27,6 +29,8 @@
     public function listar(){
         $this->param = $this->validarAtributos();
         $datos = $this->con->select("Cargo",null,$this->param);
+        $datos = Filtro::llenar_lista($datos);
+        //print_r($datos);
         return $datos;
     }
     //insertar
@@ -59,5 +63,4 @@
     }
 
   }
-
  ?>

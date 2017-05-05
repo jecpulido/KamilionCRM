@@ -1,12 +1,5 @@
 <?php namespace Lib;
 
-/**
- * Created by PhpStorm.
- * User: Jorge
- * Date: 30/04/2017
- * Time: 4:31 PM
- */
-
 class etCRM{
     private $col="";
     private $value ="";
@@ -34,15 +27,12 @@ class etCRM{
                 //echo ":".$key."(".$v.")<br>";
                 //echo $v."<br>";
             }
-            if($statement->execute()){
-              return true;
-            }else{
-              return false;
-            }
+            $statement->execute();
+
         }catch (\PDOException $PDOException){
-            echo "Upss! Error: ".$PDOException->getMessage();
+
         }catch (\Exception $exception){
-            echo "Upss! Error: ".$exception->getMessage();
+
         }
     }
 
@@ -61,10 +51,8 @@ class etCRM{
               $statement->bindparam(":".$key,$v);
           }
           if(!$statement){
-              echo "Error en registro";
           }else{
               $statement->execute();
-              echo "Perfil ingresado";
           }
       }catch (\PDOException $PDOException){
           $msj = $PDOException->getMessage();
@@ -75,7 +63,7 @@ class etCRM{
 
     public function select($tabla,$col=null,$where=null){
     try{
-        $datos=null;
+        $datos=array();
         if (!empty($where)){
             foreach ($where as $key => $v){
                 $this->col =$this->col. $key."=:".$v;
@@ -113,7 +101,5 @@ class etCRM{
           throw  $exception;
       }
     }
-
-
-
 }
+?>
