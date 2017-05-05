@@ -32,7 +32,7 @@
                         <!-- Nombre -->
                         <div class="form-registro form-group col-md-6">
                             <label for="per_nombre" class="control-label">Nombres</label>
-                            <input class="form-control" name="per_nombre" type="text" >
+                            <input class="form-control" name="per_nombre" type="text" required>
                         </div>
                         <!-- apellido -->
                         <div class="form-registro form-group col-md-6">
@@ -62,7 +62,7 @@
                         <!-- celular -->
                         <div class="form-registro form-group col-md-6">
                             <label for="per_celular" class="control-label">Celular</label>
-                            <input class="form-control" name="per_celular" type="number" maxlength="10" required>
+                            <input class="form-control" name="per_celular" type="number" max="4000000000" min="2999999999" required>
                         </div>
 
                         <!-- Estado Civil -->

@@ -1,5 +1,6 @@
 <?php namespace Controllers;
 
+use Lib\Filtro;
 use Models\Cargo;
 use Models\Persona;
 class adminController{
@@ -15,7 +16,7 @@ class adminController{
       try {
         $this->persona = new Persona();
         $this->cargo = new Cargo();
-      } catch (Exception $e) {
+      } catch (\Exception $e) {
         echo "ERRORR";
       }
 
@@ -24,9 +25,9 @@ class adminController{
 		}
 
 		public function index(){
-            $perfil = $this->cargo->listar();
-            $datos= array($perfil);
-            return $datos;
+            //$cargo = $this->cargo->listar();
+            //$datos= array($cargo);
+            //return $datos;
 		}
 
 		public function agregarPersona(){
@@ -34,6 +35,8 @@ class adminController{
         if(!$_POST){
             //$datos = $this->cargo->listar();
             $perfil = $this->cargo->listar();
+            print_r($perfil);
+            //$perfil = Filtro::llenar_lista($perfil);
             $datos= array($perfil);
             return $datos;
         }else{

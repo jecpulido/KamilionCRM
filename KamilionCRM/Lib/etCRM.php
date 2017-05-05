@@ -69,7 +69,7 @@ class etCRM{
       }catch (\PDOException $PDOException){
           $msj = $PDOException->getMessage();
       }catch (\Exception $exception){
-          throw  $exception->getMessage();
+          throw  $exception;
       }
     }
 

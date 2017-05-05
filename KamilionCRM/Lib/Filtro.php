@@ -23,39 +23,38 @@ class Filtro{
         }
       }catch (\Exception $exception){
           throw $exception;
-      }finally{
-
-}
+      }finally{}
     }
 
     public static function filtro_int($var){
       try {
-        if (!empty($var)){
-          if(is_int($var)){
-              return $var;
-          }else{
-            throw new Exception("Variable no se encuentra definida");
-          }
-          throw new Exception("Variable no se encuentra definida");
+        if (!empty($var)) {
+            if (is_int($var)) {
+                return $var;
+            } else {
+                throw new \Exception("Variable no se encuentra definida");
+            }
+        }else{
+          throw new \Exception("Variable no se encuentra definida");
         }
-      } catch (Exception $e) {
+      } catch (\Exception $e) {
         throw $e;
-
       }
     }
     public static function filtro_email($var){
       try {
-        if (!empty($var)){
-          if(is_int($var)){
-            if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-              return $var;
+        if (!empty($var)) {
+            if (is_int($var)) {
+                if (filter_var($var, FILTER_VALIDATE_EMAIL)) {
+                    return $var;
+                }
+            } else {
+                throw new \Exception("Variable no se encuentra definida");
             }
-          }else{
-            throw new Exception("Variable no se encuentra definida");
-          }
-          throw new Exception("Variable no se encuentra definida");
+        }else{
+          throw new \Exception("Variable no se encuentra definida");
         }
-      } catch (Exception $e) {
+      } catch (\Exception $e) {
         throw $e;
       }
     }
@@ -63,17 +62,26 @@ class Filtro{
     public static function filtro_lista($var,$nombre){
       try {
         if (!empty($var)){
-          if($var != 0 && $var != "- Seleccione -"){
+          if($var != 0 && $var != "- Seleccione -" && $var != '0'){
               return $var;
           }else{
-            throw new Exception("Seleccione una opcion de ".$nombre."!");
+            throw new \Exception("Seleccione una opcion de ".$nombre."!");
           }
         }else{
-          throw new Exception("Seleccione una opcion de ".$nombre);
+          throw new \Exception("Seleccione una opcion de ".$nombre);
         }
-      } catch (Exception $e) {
+      } catch (\Exception $e) {
         throw $e;
       }
+    }
+
+    public static function llenar_lista($var){
+        try {
+            $array = array(0=>'- Seleccione -')+$var;
+            return $array;
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
 }
