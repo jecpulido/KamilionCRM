@@ -40,7 +40,12 @@ class Persona{
     }
     //Buscar Todo
     public function listar(){
-
+        try{
+            $datos = $this->con->select("Personal");
+            return $datos;
+        }catch (\Exception $exception){
+            throw $exception;
+        }
     }
     //insertar
     public function add(){
@@ -48,7 +53,7 @@ class Persona{
         $this->param = $this->validarAtributos();
         $this->con->insert("Personal",$this->param);
 
-      } catch (Exception $exception) {
+      } catch (\Exception $exception) {
 
       }
 
@@ -64,7 +69,13 @@ class Persona{
     }
     //Buscar por filtro
     public function view(){
-
+        try{
+            $this->param = $this->validarAtributos();
+            $datos = $this->con->select("Personal",null,$this->param);
+            return $datos;
+        }catch (\Exception $exception){
+            throw $exception;
+        }
     }
 
     public function validarAtributos(){

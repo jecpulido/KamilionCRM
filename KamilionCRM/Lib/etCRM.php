@@ -66,13 +66,14 @@ class etCRM{
         $datos=array();
         if (!empty($where)){
             foreach ($where as $key => $v){
-                $this->col =$this->col. $key."=:".$v;
+                $this->col =$this->col. $key."=:".$key;
             }
             $this->col = " where ".$this->col;
             $sql ="Select * from $tabla".$this->col ;
         }else{
             $sql ="Select * from $tabla" ;
         }
+        //echo $sql;
         $c=$this->con->getConexion();
         $statement=$c->prepare($sql);
         if (!empty($where)){
@@ -80,7 +81,7 @@ class etCRM{
                 $statement->bindparam(":".$key,$v);
             }
         }
-        $statement->execute();
+        if($statement->execute());
         while ($result = $statement->fetch()){
             $datos[]=$result;
         }
