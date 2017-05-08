@@ -9,7 +9,6 @@ class etCRM{
         $this->con = new \Models\Conexion();
     }
 
-
     public function insert($tabla,$var){
        try{
             $c=$this->con->getConexion();
@@ -64,16 +63,21 @@ class etCRM{
     public function select($tabla,$col=null,$where=null){
     try{
         $datos=array();
+        $this->col="";
         if (!empty($where)){
             foreach ($where as $key => $v){
-                $this->col =$this->col. $key."=:".$key;
+                if ($this->col==""){
+                    $this->col =$this->col. $key."=:".$key;
+                }else{
+                    $this->col =$this->col. " and ".$key."=:".$key;
+                }
             }
             $this->col = " where ".$this->col;
             $sql ="Select * from $tabla".$this->col ;
         }else{
             $sql ="Select * from $tabla" ;
         }
-        //echo $sql;
+        //echo $sql."<br>";
         $c=$this->con->getConexion();
         $statement=$c->prepare($sql);
         if (!empty($where)){

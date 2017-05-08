@@ -14,10 +14,9 @@
                             <div class=" my-group">
                                 <input class="form-control" name="per_documento" type="number" maxlength="12" title="Ingrese un numero" required>
                                 <select name="per_tipoDocumento" class="form-control">
-                                    <option value="5">CC</option>
-                                    <option value="6">TI</option>
-                                    <option value="7">CE</option>
-                                    <option value="8">Pasaporte</option>
+                                    <?php foreach ($datos['tipoDocumento'] as $row){ ?>
+                                        <option value="<?php echo $row['ca_id']; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -49,8 +48,9 @@
                         <div class="form-registro form-group col-md-6">
                             <label for="per_genero" class="control-label">Genero</label>
                             <select  name="per_genero" class="form-control" required>
-                                <option value="F">Femenino</option>
-                                <option value="M">Masculino</option>
+                                <?php foreach ($datos['genero'] as $row){ ?>
+                                    <option value="<?php echo ($row['ca_descripcion']=="Femenino") ? "F":"M"; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                <?php } ?>
                             </select>
                         </div>
 
@@ -69,7 +69,9 @@
                         <div class="form-registro form-group col-md-6">
                             <label for="Complemento_Admin_ca_id" class="control-label">Estado Civil</label>
                             <select name="Complemento_Admin_ca_id" class="form-control" required>
-                                <option value="1">Soltero</option>
+                                <?php foreach ($datos['estadoCivil'] as $row){ ?>
+                                    <option value="<?php echo $row['ca_id']; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <!-- correo -->

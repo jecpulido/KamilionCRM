@@ -2,6 +2,7 @@
 
 //use Lib\Filtro as Filtro;
 use Models\Cargo;
+use Models\ComplementoAdmin;
 use Models\Persona;
 class adminController{
 
@@ -10,12 +11,14 @@ class adminController{
     private $perfil;
     private $cargo;
     private $complementoDatos;
-    /*    *Metodos*    */
+    private $complementoAdmin;
+
     //Constructor
     public function __construct(){
       try {
         $this->persona = new Persona();
         $this->cargo = new Cargo();
+        $this->complementoAdmin = new ComplementoAdmin();
       } catch (\Exception $e) {
 
       }
@@ -131,7 +134,14 @@ class adminController{
 
     public function cargarlista(){
         $perfil = $this->cargo->listar();
-        $datos= array("perfil"=>$perfil);
+        $this->complementoAdmin->set("ca_estado","1");
+        $this->complementoAdmin->set("ca_grupo","tipoDocumento");
+        $tipoDocumento = $this->complementoAdmin->listar();
+        $this->complementoAdmin->set("ca_grupo","genero");
+        $genero = $this->complementoAdmin->listar();
+        $this->complementoAdmin->set("ca_grupo","estadoCivil");
+        $estadoCivil = $this->complementoAdmin->listar();
+        $datos= array("perfil"=>$perfil,"tipoDocumento"=>$tipoDocumento,"genero"=>$genero,"estadoCivil"=>$estadoCivil);
         return $datos;
     }
 	}

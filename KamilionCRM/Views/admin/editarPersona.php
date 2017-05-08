@@ -89,7 +89,11 @@
                             <label for="per_carg_id" class="control-label">Cargo</label>
                             <select  name="Cargo_carg_id" class="form-control" required>
                                 <?php foreach ($datos['perfil'] as $row){ ?>
-                                    <option value="<?php echo $row['carg_id']; ?>"><?php echo $row['carg_descripcion']; ?></option>
+                                    <?php if ($row['carg_id'] == $datos['persona']['Cargo_carg_id']){?>
+                                        <option selected value="<?php echo $row['carg_id']; ?>"><?php echo $row['carg_descripcion']; ?></option>
+                                    <?php }else{ ?>
+                                        <option value="<?php echo $row['carg_id']; ?>"><?php echo $row['carg_descripcion']; ?></option>
+                                    <?php } ?>
                                 <?php } ?>
                             </select>
                         </div>
@@ -100,10 +104,18 @@
                         </div>
                         <div class="form-registro form-group col-md-6">
                             <label for="per_carg_id" class="control-label">Estado</label>
-                            <select  name="Cargo_carg_id" class="form-control" required>
+                            <select  name="per_estado" class="form-control" required>
                                 <option value="- Seleccione -">- Seleccione -</option>
-                                <option value="1">Activo</option>
-                                <option value="0">Inactivo</option>
+                                <?php if ($datos['persona']['per_estado']=='1'){?>
+                                    <option selected value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                <?php }else if($datos['persona']['per_estado']=='0'){ ?>
+                                    <option value="1">Activo</option>
+                                    <option selected value="0">Inactivo</option>
+                                <?php }else{?>
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                <?php }?>
                             </select>
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+<?php echo $datos['per_estado'];?>
 <div class="box-principal">
     <fieldset class="panelregistro">
         <h3 class="text-muted">PERSONAL | <?php echo $datos['per_nombre']." ".$datos['per_apellidos']; ?>
