@@ -57,7 +57,6 @@ class Persona{
 
       }
 
-
     }
     //Eliminar
     public function remove(){
@@ -65,7 +64,13 @@ class Persona{
     }
     //Actualizar
     public function edit(){
+        try {
+            $this->param = $this->validarAtributos();
+            $a = array("per_codigo"=>array_shift($this->param));
+            $this->con->update("Personal",$this->param,$a);
+        } catch (\Exception $exception) {
 
+        }
     }
     //Buscar por filtro
     public function view(){

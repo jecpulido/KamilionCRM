@@ -49,7 +49,7 @@
                             <label for="per_genero" class="control-label">Genero</label>
                             <select  name="per_genero" class="form-control" required>
                                 <?php foreach ($datos['genero'] as $row){ ?>
-                                    <option value="<?php echo ($row['ca_descripcion']=="Femenino") ? "F":"M"; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                    <option value="<?php echo $row['ca_descripcion']; ?>"><?php echo $row['ca_descripcion']; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

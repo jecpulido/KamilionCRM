@@ -13,19 +13,22 @@
                         <div class="form-registro form-group col-md-6">
                             <label for="per_tipoDocumento" class="control-label">Documento</label>
                             <div class=" my-group">
-                                <input class="form-control" name="per_documento" type="number" maxlength="12" title="Ingrese un numero" value="<?php echo $datos['persona']['per_documento']; ?>" disabled required>
-                                <select name="per_tipoDocumento" class="form-control"  disabled>
-                                    <option value="5">CC</option>
-                                    <option value="6">TI</option>
-                                    <option value="7">CE</option>
-                                    <option value="8">Pasaporte</option>
+                                <input class="form-control" name="per_documento" type="number" maxlength="12" title="Ingrese un numero" value="<?php echo $datos['persona']['per_documento']; ?>"  required>
+                                <select name="per_tipoDocumento" class="form-control">
+                                    <?php foreach ($datos['tipoDocumento'] as $row){ ?>
+                                        <?php if($row['ca_id'] == $datos['persona']['per_tipoDocumento']){?>
+                                            <option selected value="<?php echo $row['ca_id']; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                        <?php }else{ ?>
+                                            <option value="<?php echo $row['ca_id']; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                        <?php }?>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
                         <!-- codigo -->
                         <div class="form-registro form-group col-md-6">
                             <label for="codigo" class="control-label">Codigo</label>
-                            <input class="form-control" name="per_codigo" type="text" maxlength="5" value="<?php echo $datos['persona']['per_codigo']; ?>" disabled required>
+                            <input class="form-control" name="per_codigo" type="text" maxlength="5" value="<?php echo $datos['persona']['per_codigo']; ?>" readonly required>
                         </div>
 
                         <div class="clearfix"></div>
@@ -44,14 +47,19 @@
                         <!-- Fecha nacimiento -->
                         <div class="form-registro form-group col-md-6">
                             <label for="per_fechaNacimiento" class="control-label">Fecha Nacimiento</label>
-                            <input class="form-control" name="per_fechaNacimiento" type="text" value="<?php echo $datos['persona']['per_fechaNacimiento']; ?>" required>
+                            <input class="form-control" name="per_fechaNacimiento" type="text" placeholder="aaaa-mm-dd" value="<?php echo $datos['persona']['per_fechaNacimiento']; ?>" required>
                         </div>
                         <!-- genero -->
                         <div class="form-registro form-group col-md-6">
                             <label for="per_genero" class="control-label">Genero</label>
                             <select  name="per_genero" class="form-control" required>
-                                <option value="F">Femenino</option>
-                                <option value="M">Masculino</option>
+                                <?php foreach ($datos['genero'] as $row){ ?>
+                                    <?php if($row['ca_descripcion']==$datos['persona']['per_genero']){ ?>
+                                        <option selected value="<?php echo $row['ca_descripcion']; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                    <?php }else{ ?>
+                                        <option value="<?php echo $row['ca_descripcion']; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
                             </select>
                         </div>
 
@@ -70,7 +78,13 @@
                         <div class="form-registro form-group col-md-6">
                             <label for="Complemento_Admin_ca_id" class="control-label">Estado Civil</label>
                             <select name="Complemento_Admin_ca_id" class="form-control"  required>
-                                <option value="1">Soltero</option>
+                                <?php foreach ($datos['estadoCivil'] as $row){ ?>
+                                    <?php if($row['ca_id']==$datos['persona']['Complemento_Admin_ca_id']){ ?>
+                                        <option selected value="<?php echo $row['ca_id']; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                    <?php }else{ ?>
+                                        <option value="<?php echo $row['ca_id']; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
                             </select>
                         </div>
                         <!-- correo -->

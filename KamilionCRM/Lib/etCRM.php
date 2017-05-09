@@ -35,26 +35,40 @@ class etCRM{
         }
     }
 
-    public function update($tabla,$var){
+    public function update($tabla,$var,$where){
       try{
+          $whe = "";
+          $this->col="";
           foreach ($var as $key => $v){
-              $this->col =$this->col. $key.",";
-              $this->value =$this->value.":".$key.",";
+              if ($this->col==""){
+                  $this->col =" set ". $key."= :".$key." ";
+              }else{
+                  $this->col =$this->col. ", ".$key."=:".$key." ";
+              }
+          }
+          foreach ($where as $key => $v){
+              if ($whe==""){
+                  $whe = " WHERE ".$key."= :".$key;
+              }else{
+                  $whe = $whe.",".$key."= :".$key;
+              }
           }
           $this->col = substr($this->col,0,strlen($this->col)-1);
           $this->value = substr($this->value,0,strlen($this->value)-1);
-          $sql = "INSERT INTO $tabla($this->col) VALUES ($this->value)";
+          $sql = "UPDATE"." ".$tabla.$this->col." ".$whe;
+          //echo $sql;
           $c=$this->con->getConexion();
           $statement=$c->prepare($sql);
+          $var = $var+$where;
           foreach ($var as $key => &$v){
+              //echo "<br>:".$key,$v;
               $statement->bindparam(":".$key,$v);
           }
-          if(!$statement){
-          }else{
-              $statement->execute();
-          }
+
+          $statement->execute();
+
       }catch (\PDOException $PDOException){
-          $msj = $PDOException->getMessage();
+          $msj =  $PDOException->getMessage();
       }catch (\Exception $exception){
           throw  $exception;
       }

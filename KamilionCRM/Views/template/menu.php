@@ -8,9 +8,7 @@
         </button>
         <a class="navbar-brand" href="index.php">crm kamilion</a>
     </div>
-    <!-- /.navbar-header -->
     <ul class="nav navbar-top-links navbar-right">
-        <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i> NOMBRE USUARIO <i class="fa fa-caret-down"></i>
@@ -24,11 +22,8 @@
                 <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
                 </li>
             </ul>
-            <!-- /.dropdown-user -->
         </li>
-        <!-- /.dropdown -->
     </ul>
-    <!-- /.navbar-top-links -->
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
@@ -42,19 +37,16 @@
                         </span>
                       </div>
                     </div>
-                    <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="#">Administracion</a>
+                    <a href="#">Personal</a>
                     <ul class="nav nav-second-level">
-                        <li><a href="#" > Agregar</a></li>
-                        <li><a href="#" > Listar</a></li>
-                        <li><a href="#" > Agregar</a></li>
-                        <li><a href="#" > Listar</a></li>
+                        <li><a href="<?php echo URL;?>admin/agregarPersona"> Agregar</a></li>
+                        <li><a href="<?php echo URL;?>admin/listarPersona"> Listar</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Inbound</a>
+                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Usuarios</a>
                     <ul class="nav nav-second-level">
                         <li><a href="#">Listado</a></li>
                         <li><a href="#">Agregar</a></li>

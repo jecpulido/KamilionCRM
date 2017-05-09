@@ -81,7 +81,6 @@ class adminController{
                 $this->persona->set("per_codigo", $_POST['per_codigo']);
                 $this->persona->set("Complemento_Admin_ca_id", $_POST['Complemento_Admin_ca_id']);
                 $this->persona->set("Cargo_carg_id", $_POST['Cargo_carg_id']);
-                $this->persona->set("per_documento", $_POST['per_documento']);
                 $this->persona->set("per_tipoDocumento", $_POST['per_tipoDocumento']);
                 $this->persona->set("per_nombre", ($_POST["per_nombre"]));
                 $this->persona->set("per_apellidos", $_POST['per_apellidos']);
@@ -92,8 +91,8 @@ class adminController{
                 $this->persona->set("per_profesion", $_POST['per_profesion']);
                 $this->persona->set("per_fechaNacimiento", $_POST['per_fechaNacimiento']);
                 $this->persona->set("per_genero", $_POST['per_genero']);
-                $this->persona->set("per_estado", 1);
-                $this->persona->add();
+                $this->persona->set("per_estado", $_POST['per_estado']);
+                $this->persona->edit();
                 header("Location: " . URL . "admin/listarPersona");
             }
         }catch (\Exception $exception){
