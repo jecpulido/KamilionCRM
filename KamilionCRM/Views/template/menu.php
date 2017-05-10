@@ -48,8 +48,8 @@
                 <li>
                     <a href="#"><i class="fa fa-wrench fa-fw"></i> Usuarios</a>
                     <ul class="nav nav-second-level">
-                        <li><a href="#">Listado</a></li>
-                        <li><a href="#">Agregar</a></li>
+                        <li><a href="<?php echo URL;?>admin/listarUsuario">Listado</a></li>
+                        <li><a href="<?php echo URL;?>admin/agregarUsuario">Agregar</a></li>
                     </ul>
                 </li>
             </ul>

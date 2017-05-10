@@ -111,6 +111,40 @@ class etCRM{
         return $datos;
     }
 
+    public function selectAvanzado($sql,$where=null){
+        try{
+            $datos=array();
+            $this->col="";
+            if (!empty($where)){
+                foreach ($where as $key => $v){
+                    if ($this->col==""){
+                        $this->col =$this->col. $key."=:".$key;
+                    }else{
+                        $this->col =$this->col. " and ".$key."=:".$key;
+                    }
+                }
+                $this->col = " where ".$this->col;
+                $sql =$sql."".$this->col ;
+            }
+            //echo $sql."<br>";
+            $c=$this->con->getConexion();
+            $statement=$c->prepare($sql);
+            if (!empty($where)){
+                foreach ($where as $key => &$v){
+                    $statement->bindparam(":".$key,$v);
+                }
+            }
+            if($statement->execute());
+            while ($result = $statement->fetch()){
+                $datos[]=$result;
+            }
+        }catch (\PDOException $PDOException){
+            $msj = $PDOException->getMessage();
+        }catch (\Exception $exception){
+            $msj =  $exception->getMessage();
+        }
+        return $datos;
+    }
     public function delete(){
       try{
 

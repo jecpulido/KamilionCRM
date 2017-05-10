@@ -174,3 +174,7 @@ ALTER TABLE `personal` ADD `per_tipoDocumento` VARCHAR(3) NOT NULL AFTER `per_do
 ALTER TABLE `personal` CHANGE `per_estado` `per_estado` INT(1) NOT NULL;
 ALTER TABLE `complemento_admin` ADD `ca_grupo` VARCHAR(20) NOT NULL AFTER `ca_descripcion`;
 ALTER TABLE `complemento_admin` ADD `ca_estado` INT(1) NOT NULL AFTER `ca_grupo`;
+
+--CONSULTAS
+--No tiene usuarios
+SELECT * FROM personal LEFT JOIN usuarios on per_codigo= Personal_per_codigo where usu_id is null

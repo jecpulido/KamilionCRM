@@ -4,6 +4,8 @@
 use Models\Cargo;
 use Models\ComplementoAdmin;
 use Models\Persona;
+use Models\Usuario;
+
 class adminController{
 
     /*    *Atributos*    */
@@ -12,6 +14,7 @@ class adminController{
     private $cargo;
     private $complementoDatos;
     private $complementoAdmin;
+    private $usuario;
 
     //Constructor
     public function __construct(){
@@ -19,6 +22,7 @@ class adminController{
         $this->persona = new Persona();
         $this->cargo = new Cargo();
         $this->complementoAdmin = new ComplementoAdmin();
+        $this->usuario = new Usuario();
       } catch (\Exception $e) {
 
       }
@@ -123,12 +127,27 @@ class adminController{
         }
     }
 
-    public function agregarUsuario(){
+    public function agregarUsuario($codigo){
+        try {
+            if (!$_POST) {
 
+
+            } else {
+
+                echo $_POST['per_codigo'];
+            }
+        }catch (\Exception $exception){
+
+        }
     }
 
     public function listarUsuario(){
-
+        if(!$_POST) {
+            $ususin = $this->usuario->sinUsu();
+            $usucon = $this->usuario->conUsu();
+            $datos = array("sin"=>$ususin,"con"=>$usucon);
+            return $datos;
+        }
     }
 
     public function cargarlista(){
