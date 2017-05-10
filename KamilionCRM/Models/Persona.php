@@ -66,6 +66,7 @@ class Persona{
     public function edit(){
         try {
             $this->param = $this->validarAtributos();
+            //print_r($this->param);
             $a = array("per_codigo"=>array_shift($this->param));
             $this->con->update("Personal",$this->param,$a);
         } catch (\Exception $exception) {

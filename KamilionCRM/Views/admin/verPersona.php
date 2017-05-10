@@ -1,10 +1,10 @@
-<?php echo $datos['per_estado'];?>
 <div class="box-principal">
     <fieldset class="panelregistro">
-        <h3 class="text-muted">PERSONAL | <?php echo $datos['per_nombre']." ".$datos['per_apellidos']; ?>
-            <a href="javascript:history.back()" class="btn btn-default pull-right"> Volver</a><hr></h3>
+        <h2 class="page-header" style="text-transform: uppercase"><?php echo $datos['per_nombre']." ".$datos['per_apellidos']; ?> |
+            <a href="javascript:history.back()" class="btn btn-default"> Volver</a>
+        </h2>
 
-        <div class="panel panel-success table-responsive" style="width: 100%" >
+        <div class="panel panel-primary table-responsive" style="width: 100%" >
             <div class="panel-heading" style="width: 100%">
                 <h3 class="panel-title">Perfil de <?php echo $datos['per_nombre']; ?></h3>
             </div>

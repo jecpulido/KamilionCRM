@@ -1,7 +1,7 @@
 <div class="box-principal">
     <fieldset class="panelregistro">
-        <h3 class="text-muted">USUARIOS | REGISTRO | <?php echo $datos['per_nombre']." ".$datos['per_apellidos'] ?> <hr></h3>
-        <div class="panel panel-success " >
+        <h2 class="page-header">REGISTRO USUARIO | <?php echo $datos['persona']['per_nombre']." ".$datos['persona']['per_apellidos'] ?> |<a href="<?php echo URL;?>admin/listarUsuario" class="btn btn-primary"><i class="fa fa-users"></i> Ver listado</a></h2>
+        <div class="panel panel-primary " >
             <div class="panel-heading">
                 <h3 class="panel-title">Datos Persona</h3>
             </div>
@@ -11,7 +11,7 @@
                         <!-- codigo -->
                         <div class="form-registro form-group col-md-6">
                             <label for="Personal_per_codigo" class="control-label">Codigo</label>
-                            <input class="form-control" name="Personal_per_codigo" type="text" maxlength="5" readonly required>
+                            <input class="form-control" name="Personal_per_codigo" type="text" value="<?php echo $datos['persona']['per_codigo']; ?>" maxlength="5" readonly required>
                         </div>
                         <!-- Usuario-->
                         <div class="form-registro form-group col-md-6">
@@ -23,8 +23,8 @@
                         <div class="form-registro form-group col-md-6">
                             <label for="Perfil_perf_id" class="control-label">Perfil</label>
                             <select  name="Perfil_perf_id" class="form-control" required>
-                                <?php foreach ($datos['genero'] as $row){ ?>
-                                    <option value="<?php echo $row['ca_descripcion']; ?>"><?php echo $row['ca_descripcion']; ?></option>
+                                <?php foreach ($datos['perfil'] as $row){ ?>
+                                    <option value="<?php echo $row['perf_id']; ?>"><?php echo $row['perf_descripcion']; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -49,8 +49,8 @@
                     <div class="section">
                         <div class="col-md-12 ">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Guardar</button>
-                                <button type="reset" class="btn btn-warning">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="reset" class="btn btn-danger">Cancelar</button>
                             </div>
                         </div>
                     </div>

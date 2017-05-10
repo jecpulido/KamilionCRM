@@ -3,6 +3,7 @@
 //use Lib\Filtro as Filtro;
 use Models\Cargo;
 use Models\ComplementoAdmin;
+use Models\Perfil;
 use Models\Persona;
 use Models\Usuario;
 
@@ -23,6 +24,7 @@ class adminController{
         $this->cargo = new Cargo();
         $this->complementoAdmin = new ComplementoAdmin();
         $this->usuario = new Usuario();
+        $this->perfil = new Perfil();
       } catch (\Exception $e) {
 
       }
@@ -130,10 +132,17 @@ class adminController{
     public function agregarUsuario($codigo){
         try {
             if (!$_POST) {
-
-
+                $perfil = $this->perfil->listar();
+                //print_r($perfil);
+                $this->persona->set("per_codigo",$codigo);
+                $datos = $this->persona->view();
+                foreach ($datos as $row){
+                    $datos = $row;
+                }
+                $datos = array("persona"=>$datos,"perfil"=>$perfil);
+                //print_r($datos);
+                return $datos;
             } else {
-
                 echo $_POST['per_codigo'];
             }
         }catch (\Exception $exception){

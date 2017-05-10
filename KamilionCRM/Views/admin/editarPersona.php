@@ -1,8 +1,8 @@
 <div class="box-principal">
     <fieldset class="panelregistro">
-        <h3 class="text-muted">PERSONAL | EDITAR
-            <a href="javascript:history.back()" class="btn btn-default pull-right"> Volver</a>  <hr></h3>
-        <div class="panel panel-success " >
+        <h2 class="page-header">EDITAR PERSONA |
+            <a href="javascript:history.back()" class="btn btn-default "> Volver</a></h2>
+        <div class="panel panel-primary " >
             <div class="panel-heading">
                 <h3 class="panel-title">Datos Personales</h3>
             </div>
@@ -121,14 +121,14 @@
                             <select  name="per_estado" class="form-control" required>
                                 <option value="- Seleccione -">- Seleccione -</option>
                                 <?php if ($datos['persona']['per_estado']=='1'){?>
-                                    <option selected value="1">Activo</option>
-                                    <option value="0">Inactivo</option>
+                                    <option selected value="'1'">Activo</option>
+                                    <option value="'0'">Inactivo</option>
                                 <?php }else if($datos['persona']['per_estado']=='0'){ ?>
-                                    <option value="1">Activo</option>
-                                    <option selected value="0">Inactivo</option>
+                                    <option value="'1'">Activo</option>
+                                    <option selected value="'0'">Inactivo</option>
                                 <?php }else{?>
-                                    <option value="1">Activo</option>
-                                    <option value="0">Inactivo</option>
+                                    <option value="'1'">Activo</option>
+                                    <option value="'0'">Inactivo</option>
                                 <?php }?>
                             </select>
                         </div>
@@ -136,7 +136,7 @@
                     <div class="section">
                         <div class="col-md-12 ">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Actualizar</button>
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
                             </div>
                         </div>
                     </div>

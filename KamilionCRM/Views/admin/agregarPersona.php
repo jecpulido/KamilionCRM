@@ -1,7 +1,7 @@
 <div class="box-principal">
 	<fieldset class="panelregistro">
-        <h3 class="text-muted">PERSONAL | REGISTRO<hr></h3>
-        <div class="panel panel-success " >
+        <h2 class="page-header">REGISTRO PERSONAL | <a href="<?php echo URL;?>admin/listarPersona" class="btn btn-primary"><i class="fa fa-users"></i> Ver listado</a></h2>
+        <div class="panel panel-primary " >
             <div class="panel-heading">
                 <h3 class="panel-title">Datos Personales</h3>
             </div>
@@ -109,8 +109,8 @@
                     <div class="section">
                         <div class="col-md-12 ">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Registrar</button>
-                                <button type="reset" class="btn btn-warning">Borrar</button>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                <button type="reset" class="btn btn-danger">Borrar</button>
                             </div>
                         </div>
                     </div>

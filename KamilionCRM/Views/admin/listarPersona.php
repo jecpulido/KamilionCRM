@@ -1,7 +1,7 @@
 <div class="box-principal">
     <fieldset class="panelregistro">
-        <h3 class="text-muted">PERSONAL | LISTADO<hr></h3>
-        <div class="panel panel-success table-responsive" style="width: 100%" >
+        <h2 class="page-header">LISTADO PERSONAL | <a href="<?php echo URL;?>admin/agregarPersona" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Persona</a></h2>
+        <div class="panel panel-primary table-responsive" style="width: 100%" >
             <div class="panel-heading" style="width: 100%">
                 <h3 class="panel-title">Datos Personales</h3>
             </div>
@@ -29,10 +29,10 @@
                         <td><?php echo $row['per_apellidos']; ?></td>
                         <td><?php echo $row['per_documento']; ?></td>
                         <td><?php echo $row['Complemento_Admin_ca_id']; ?></td>
-                        <td><?php echo $row['per_estado']; ?></td>
+                        <td><?php echo ($row['per_estado']==1) ? "Activo":"Inactivo"; ?></td>
                         <td><?php echo $row['per_celular']; ?></td>
                         <td><?php echo $row['per_profesion']; ?></td>
-                        <td><a class="btn btn-warning" href="<?php echo URL; ?>admin/editarPersona/<?php echo $row['per_codigo']; ?>">Editar</a>
+                        <td><a class="btn btn-danger" href="<?php echo URL; ?>admin/editarPersona/<?php echo $row['per_codigo']; ?>">Editar</a>
                         </td>
                     </tr>
                 <?php } ?>

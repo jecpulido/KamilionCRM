@@ -1,6 +1,6 @@
 <div class="box-principal">
     <fieldset class="panelregistro">
-        <h3 class="text-muted">USUARIOS | CONTROL<hr></h3>
+        <h2 class="page-header">CONTROL USUARIOS</h2>
         <div class="panel panel-danger table-responsive" style="width: 100%" >
             <div class="panel-heading" style="width: 100%">
                 <h3 class="panel-title">PENDIENTE POR CREAR</h3>
@@ -21,7 +21,7 @@
                         <td><?php echo $row['per_codigo']; ?></td>
                         <td><?php echo $row['per_nombre']." ".$row['per_apellidos']; ?></td>
                         <td><?php echo $row['carg_descripcion']; ?></td>
-                        <td><?php echo $row['per_estado']; ?></td>
+                        <td><?php echo ($row['per_estado']==1) ? "Activo":"Inactivo"; ?></td>
                         <td><a class="btn btn-danger" href="<?php echo URL; ?>admin/agregarUsuario/<?php echo $row['per_codigo']; ?>">Crear</a>
                         </td>
                     </tr>

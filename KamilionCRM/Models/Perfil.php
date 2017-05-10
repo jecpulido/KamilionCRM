@@ -3,7 +3,7 @@
 
 
 use Lib\etCRM;
-
+use Lib\Filtro;
 class Perfil{
 
     /*    *Atributos*    */
@@ -13,31 +13,32 @@ class Perfil{
     private $atributos = array("perf_id","perf_descripcion","perf_permisos");
     private $var;
 
-    /*    *Metodos*    */
+
     //Constructor
     public function __construct(){
-      $this->con = new etCRM();
+        $this->con = new etCRM();
     }
 
     //Metodo set
     public function set($atributo,$contenido){
-      $this->$atributo = $contenido;
+        $this->$atributo = $contenido;
     }
     //Metodo get
     public function get($atributo){
-      return $this->$atributo;
+        return $this->$atributo;
     }
 
     //Buscar Todo
     public function listar(){
-      $this->param = $this->validarAtributos();
-      $datos = $this->con->select("Perfil",null,$this->param);
-      return $datos;
+        $this->param = $this->validarAtributos();
+        $datos = $this->con->select("perfil",null,$this->param);
+        $datos = Filtro::llenar_lista($datos);
+        return $datos;
     }
     //insertar
     public function add(){
         $this->param = $this->validarAtributos();
-        $this->con->insert("Perfil",$this->param);
+        $this->con->insert("perfil",$this->param);
     }
 
     //Eliminar
@@ -50,7 +51,13 @@ class Perfil{
     }
     //Buscar por filtro
     public function view(){
-
+        try{
+            $this->param = $this->validarAtributos();
+            $datos = $this->con->select("perfil",null,$this->param);
+            return $datos;
+        }catch (\Exception $exception){
+            throw $exception;
+        }
     }
 
     public function validarAtributos(){
@@ -64,7 +71,6 @@ class Perfil{
         }
         return $this->var;
     }
+}
 
-  }
-
- ?>
+?>
