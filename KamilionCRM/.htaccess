@@ -1,6 +1,6 @@
 RewriteEngine On
 
-DirectoryIndex default.php index.php
+DirectoryIndex default.php index.php login.php
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
