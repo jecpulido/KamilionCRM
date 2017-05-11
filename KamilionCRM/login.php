@@ -20,13 +20,13 @@
                         <h3 class="panel-title text-center">Ingresar al sistema</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="" method="post">
+                        <form role="form" action="Controllers/loginController.php" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="contoso@gmail.com" name="email" type="email" autocomplete="off" autofocus>
+                                    <input class="form-control" placeholder="contoso@gmail.com" name="usu_id" type="text" autocomplete="off" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" >
+                                    <input class="form-control" placeholder="Password" name="usu_pass" type="password" >
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>

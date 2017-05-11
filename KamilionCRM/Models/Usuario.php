@@ -32,7 +32,12 @@ use Lib\etCRM;
     }
     //insertar
     public function add(){
+        try {
+            $this->param = $this->validarAtributos();
+            $this->con->insert("usuarios",$this->param);
+        } catch (\Exception $exception) {
 
+        }
     }
     //Eliminar
     public function delete(){

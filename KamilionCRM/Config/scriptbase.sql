@@ -178,3 +178,5 @@ ALTER TABLE `complemento_admin` ADD `ca_estado` INT(1) NOT NULL AFTER `ca_grupo`
 --CONSULTAS
 --No tiene usuarios
 SELECT * FROM personal LEFT JOIN usuarios on per_codigo= Personal_per_codigo where usu_id is null
+
+ALTER TABLE `usuarios` CHANGE `usu_pass` `usu_pass` VARCHAR(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;

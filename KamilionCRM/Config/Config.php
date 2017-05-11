@@ -6,4 +6,10 @@
   define("USER","root");
   //PASSWORD
   define("PASSWORD","");
+  //KEY ENCRIPTER
+  define("KEY","kam123");
+  //IV
+  define("IV","kam456");
+  //METHOD
+  define("METHOD","AES-256-CBC");
  ?>

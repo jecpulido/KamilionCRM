@@ -1,6 +1,6 @@
 <?php namespace Controllers;
 
-//use Lib\Filtro as Filtro;
+use Lib\Filtro as Filtro;
 use Models\Cargo;
 use Models\ComplementoAdmin;
 use Models\Perfil;
@@ -137,13 +137,22 @@ class adminController{
                 $this->persona->set("per_codigo",$codigo);
                 $datos = $this->persona->view();
                 foreach ($datos as $row){
-                    $datos = $row;
-                }
+                    $datos = $row;                }
                 $datos = array("persona"=>$datos,"perfil"=>$perfil);
                 //print_r($datos);
                 return $datos;
             } else {
-                echo $_POST['per_codigo'];
+                $this->usuario->set("usu_id",$_POST['usu_id']);
+                $this->usuario->set("Personal_per_codigo",$_POST['Personal_per_codigo']);
+                $this->usuario->set("Perfil_perf_id",$_POST['Perfil_perf_id']);
+                $this->usuario->set("usu_jefe",$_POST['usu_jefe']);
+                if ($_POST['usu_pass'] ===$_POST['usu_pass2'] ){
+                    $this->usuario->set("usu_pass",Filtro::encriptar($_POST['usu_pass']));
+                }else{
+                    throw new \Exception("Las Contraseñas no coinciden");
+                }
+                $this->usuario->add();
+                header("Location: " . URL . "admin/listarUsuario");
             }
         }catch (\Exception $exception){
 

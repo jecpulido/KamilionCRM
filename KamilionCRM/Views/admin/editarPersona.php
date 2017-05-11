@@ -121,13 +121,13 @@
                             <select  name="per_estado" class="form-control" required>
                                 <option value="- Seleccione -">- Seleccione -</option>
                                 <?php if ($datos['persona']['per_estado']=='1'){?>
-                                    <option selected value="'1'">Activo</option>
+                                    <option selected value="1">Activo</option>
                                     <option value="'0'">Inactivo</option>
                                 <?php }else if($datos['persona']['per_estado']=='0'){ ?>
-                                    <option value="'1'">Activo</option>
+                                    <option value="1">Activo</option>
                                     <option selected value="'0'">Inactivo</option>
                                 <?php }else{?>
-                                    <option value="'1'">Activo</option>
+                                    <option value="1">Activo</option>
                                     <option value="'0'">Inactivo</option>
                                 <?php }?>
                             </select>

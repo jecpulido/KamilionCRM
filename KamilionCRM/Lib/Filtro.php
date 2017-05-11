@@ -7,6 +7,7 @@
  */
 
 namespace Lib;
+require_once "../Config/Config.php";
 class Filtro{
     public static function filtro_string($var=null,$nombre){
       try {
@@ -99,5 +100,27 @@ class Filtro{
             throw $e;
         }
     }
+
+    public static function encriptar($string){
+        $output = false;
+        $key = hash('sha256', KEY);
+        $iv = substr(hash('sha256', IV), 0, 16);
+        $output = openssl_encrypt($string, METHOD, $key, 0, $iv);
+        $output = base64_encode($output);
+        //echo $output;
+        return $output;
+    }
+
+    public static function desencriptar($string){
+        //echo $string;
+        $output = false;
+        $key = hash('sha256', KEY);
+        $iv = substr(hash('sha256', IV), 0, 16);
+        //echo $key."---------|-----------".$iv."------------".METHOD;
+        $output = openssl_decrypt(base64_decode($string), METHOD, $key, 0, $iv);
+
+        return $output;
+    }
+
 }
 ?>
