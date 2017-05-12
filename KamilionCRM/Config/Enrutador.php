@@ -6,6 +6,7 @@
 			//if (isset($_SESSION['usu_id'])){
                 $controlador = $request->getControlador() . "Controller";
                 $ruta = ROOT . "Controllers" . DS . $controlador .".php";
+                //echo $ruta;
                 $metodo = $request->getMetodo();
                 if($metodo == "index.php"){
                     $metodo = "index";

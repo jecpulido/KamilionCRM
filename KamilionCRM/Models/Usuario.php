@@ -1,5 +1,5 @@
 <?php namespace Models;
-require_once "../Lib/etCRM.php";
+
 use Lib\etCRM;
   class Usuario{
 
@@ -33,7 +33,7 @@ use Lib\etCRM;
     public function view(){
         try{
             $this->param = $this->validarAtributos();
-            $datos = $this->con->select("usuarios");
+            $datos = $this->con->select("usuarios",null, $this->param);
             return $datos;
         }catch (\Exception $exception){
 

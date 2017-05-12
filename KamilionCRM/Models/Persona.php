@@ -51,6 +51,7 @@ class Persona{
     public function add(){
       try {
         $this->param = $this->validarAtributos();
+        print_r($this->param );
         $this->con->insert("Personal",$this->param);
 
       } catch (\Exception $exception) {

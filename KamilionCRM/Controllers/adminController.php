@@ -31,6 +31,7 @@ class adminController{
     }
 
     public function index(){
+        $te = new \Views\Template();
         $datos = $this->cargarlista();
         return $datos ;
     }

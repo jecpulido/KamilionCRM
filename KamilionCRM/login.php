@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Administración de estudiantes | Codigo Facilito</title>
+    <title>KamilionCRM | Login</title>
     <link rel="stylesheet" href="Views/template/css/bootstrap.css">
     <!-- <link rel="stylesheet" href="<?php echo URL; ?>Views/template/assets/bower_components/bootstrap/dist/css/bootstrap.css"> -->
     <link rel="stylesheet" href="Views/template/assets/bower_components/metisMenu/dist/metisMenu.min.css">
@@ -20,7 +20,7 @@
                         <h3 class="panel-title text-center">Ingresar al sistema</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="Controllers/loginController.php" method="post">
+                        <form role="form" action="<?php echo $_SERVER['PHP_SELF'].'/ingresar'; ?>" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="contoso@gmail.com" name="usu_id" type="text" autocomplete="off" autofocus>
