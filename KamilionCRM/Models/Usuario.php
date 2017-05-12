@@ -1,9 +1,7 @@
 <?php namespace Models;
-
+require_once "../Lib/etCRM.php";
 use Lib\etCRM;
   class Usuario{
-
-
 
     private $usu_id;
     private $Personal_per_codigo;
@@ -29,6 +27,17 @@ use Lib\etCRM;
     //Buscar Todo
     public function listar(){
 
+    }
+
+    //Buscar usu
+    public function view(){
+        try{
+            $this->param = $this->validarAtributos();
+            $datos = $this->con->select("usuarios");
+            return $datos;
+        }catch (\Exception $exception){
+
+        }
     }
     //insertar
     public function add(){

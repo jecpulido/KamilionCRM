@@ -7,7 +7,7 @@
  */
 
 namespace Lib;
-require_once "../Config/Config.php";
+
 class Filtro{
     public static function filtro_string($var=null,$nombre){
       try {

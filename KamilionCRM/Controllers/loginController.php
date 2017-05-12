@@ -7,18 +7,28 @@
  */
 
 namespace Controllers;
-include_once "../Lib/Filtro.php";
+//include "../Lib/core.php";
+//include_once "../Lib/Filtro.php";
+//include_once "../Models/Usuario.php";
 use Lib\Filtro as Filtro;
+use Models\Usuario as Usuario;
+
+$usuario = new Usuario();
 
 session_start();
 // Store Session Data
 if (isset($_SESSION['usu_id'])){
     header("Location:../index.php");
 }else{
-    if (isset($_POST)){
-            echo $_POST['usu_id']."<br>";
-            //echo $_POST['usu_pass']."<br>";
-            echo Filtro::desencriptar(Filtro::encriptar($_POST['usu_pass']));
+    if (!empty($_POST)){
+        $usu_id = filter_input(INPUT_POST, $_POST['usu_id'], FILTER_SANITIZE_STRING);
+        $usu_pass =  Filtro::encriptar($_POST['usu_pass']);
+        $error ="";
+        $usuario->set("usu_id",$usu_id);
+        $usuario->set("usu_id",$usu_id);
+        $datos = $usuario->view();
+        print_r($datos);
+
 
     }
 }

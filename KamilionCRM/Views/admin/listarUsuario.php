@@ -1,7 +1,7 @@
 <div class="box-principal">
     <fieldset class="panelregistro">
         <h2 class="page-header">CONTROL USUARIOS</h2>
-        <?php if(isset($datos["sin"])){?>
+        <?php if(!empty($datos["sin"])){?>
             <div class="panel panel-danger table-responsive" style="width: 100%" >
                 <div class="panel-heading" style="width: 100%">
                     <h3 class="panel-title">PENDIENTE POR CREAR</h3>
