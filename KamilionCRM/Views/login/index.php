@@ -32,10 +32,14 @@
                         </fieldset>
                     </form>
                     <br>
+                    <?php if (isset($_SESSION['Error'])){ ?>
+                    <?php if (($_SESSION['Error'])){ ?>
                     <div class="alert alert-danger">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>Error! </strong>
+                        <strong>Error! <?php echo \Lib\Session::get('Error'); ?></strong>
                     </div>
+                        <?php }?>
+                    <?php }?>
                 </div>
             </div>
         </div>

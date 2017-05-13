@@ -1,9 +1,11 @@
 <?php namespace Config;
 
-	class Enrutador{
+	use Lib\Redirecciona;
+
+class Enrutador{
 
 		public static function run(Request $request){
-			//if (isset($_SESSION['usu_id'])){
+			//if (isset($_SESSION['usu_id'])){}
                 $controlador = $request->getControlador() . "Controller";
                 $ruta = ROOT . "Controllers" . DS . $controlador .".php";
                 //echo $ruta;
@@ -32,8 +34,8 @@
                     print "No se encontro la vista";
                 }
 			//}else{
-				//echo URL."/index.php";
-                //header("Location:".URL."auth/index.php");
+			//	Redirecciona::to("login/");
+
 			//}
 
 		}

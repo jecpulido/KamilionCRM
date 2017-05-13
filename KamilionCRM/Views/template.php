@@ -13,10 +13,10 @@ class Template{
                 <?php include TEMPLATE . "head.php"; ?>
             </head>
             <body>
-            <?php if (isset($_SESSION['usu_id'])){ include TEMPLATE . "menu.php";?>
+            <?php include TEMPLATE . "menu.php";?>
             <div id="page-wrapper">
             <?php
-                }
+
 
     }
 

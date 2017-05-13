@@ -2,6 +2,7 @@
 
 use Models\Usuario;
 use Lib\Filtro as Filtro;
+use Lib\Redirecciona as Redirecciona;
 use Views\Template;
 
 class loginController{
@@ -16,16 +17,18 @@ class loginController{
 
     public function index(){
         try{
+            session_start();
+            $_SESSION["Error"]="";
             if (!$_POST){
                 //echo "entre";
             }else{
-                session_start();
                 // Store Session Data
                 if (isset($_SESSION['usu_id'])){
-                    header("Location:".URL."admin");
-                }else{
-                    if (!empty($_POST)){
 
+
+                    Redirecciona::to("admin/");
+                }else{
+                   // if (!empty($_POST)){
                         if (empty($_POST['usu_id'])){
                             throw new \Exception("Ingrese un usuario");
                         }else{
@@ -40,18 +43,23 @@ class loginController{
                         $this->usuario->set("usu_id",$usu_id);
                         $this->usuario->set("usu_pass",$usu_pass);
                         $datos = $this->usuario->view();
-                        if(isset($datos)){
+                        if(!empty($datos)){
                             $_SESSION['usu_id'] = $usu_id;
+                            Redirecciona::to("index.php")->withMessage(array(
+                                "menu"=>"true"
+                            ));;
                             //echo $_SESSION['usu_id'];
-                            $tem = new Template();
                             //header("Location:".URL."/admin");
+                        }else{
+                            throw new \Exception("Usuario/Password incorrectos");
+
                         }
-                        print_r($datos);
-                    }
+                        //print_r($datos);
+                    //}
                 }
             }
         }catch (\Exception $exception){
-            //echo $exception->getMessage();
+            $_SESSION['Error'] = $exception->getMessage();
         }
 
     }
