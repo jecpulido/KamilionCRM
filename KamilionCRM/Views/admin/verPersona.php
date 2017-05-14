@@ -13,7 +13,6 @@
                 <div class="col-md-4">
                     <img class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/avatars/<?php echo $datos['per_rutaFoto']; ?>">
                     <ul class="list-group">
-
                     </ul>
                 </div>
                 <div class="col-md-4">

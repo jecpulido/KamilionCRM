@@ -12,15 +12,15 @@
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> NOMBRE USUARIO <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['usu_id'];?> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href=""><i class="fa fa-user fa-fw"></i> Perfil</a>
+                <li><a href="<?php echo URL;?>admin/"><i class="fa fa-user fa-fw"></i> Perfil</a>
                 </li>
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
+                <li><a href="<?php echo URL;?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
                 </li>
             </ul>
         </li>

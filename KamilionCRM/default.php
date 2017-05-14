@@ -34,7 +34,7 @@
                   <li><a href="https://www.w3schools.com/">Vision</a></li>
                   <li><a href="">Servicios</a></li>
                   <li><a href="">Contacto</a></li>
-                  <li><a href="login.php">Login</a></li>
+                  <li><a href="login/">Login</a></li>
                   <li class="hidden dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> iniciar sesion <span class="glyphicon glyphicon-user "></span>
                     </a>

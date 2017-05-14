@@ -9,6 +9,7 @@ class loginController{
 
     /*    *Atributos*    */
     private $usuario;
+    private $tem;
     /*    *Metodos*    */
     //Constructor
     public function __construct(){
@@ -17,18 +18,20 @@ class loginController{
 
     public function index(){
         try{
-            session_start();
+            if (!isset($_SESSION)) {
+                session_start();
+            }
             $_SESSION["Error"]="";
-            if (!$_POST){
-                //echo "entre";
-            }else{
+            if (isset($_SESSION['usu_id'])){
+                Redirecciona::to("admin/");
+            }
+            if ($_POST){
                 // Store Session Data
                 if (isset($_SESSION['usu_id'])){
-
-
                     Redirecciona::to("admin/");
                 }else{
                    // if (!empty($_POST)){
+
                         if (empty($_POST['usu_id'])){
                             throw new \Exception("Ingrese un usuario");
                         }else{
@@ -44,10 +47,12 @@ class loginController{
                         $this->usuario->set("usu_pass",$usu_pass);
                         $datos = $this->usuario->view();
                         if(!empty($datos)){
-                            $_SESSION['usu_id'] = $usu_id;
-                            Redirecciona::to("index.php")->withMessage(array(
-                                "menu"=>"true"
-                            ));;
+                            //print_r($datos);
+
+                            $_SESSION['usu_id'] = $datos[0]['usu_id'];
+                            $_SESSION['Personal_per_codigo'] = $datos[0]['Personal_per_codigo'];
+                            $_SESSION['Perfil_perf_id'] = $datos[0]['Perfil_perf_id'];
+                            Redirecciona::to("index.php");
                             //echo $_SESSION['usu_id'];
                             //header("Location:".URL."/admin");
                         }else{
@@ -64,8 +69,16 @@ class loginController{
 
     }
 
-    public function ingresar(){
+    public function logout(){
+        try{
+            session_start();
 
+	        unset ($_SESSION['usu_id']);
+	        session_destroy();
+            Redirecciona::to("");
+        }catch (\Exception $exception){
+
+        }
     }
 
     public function editar(){

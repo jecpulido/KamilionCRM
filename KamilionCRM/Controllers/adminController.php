@@ -1,6 +1,7 @@
 <?php namespace Controllers;
 
 use Lib\Filtro as Filtro;
+use Lib\Session;
 use Models\Cargo;
 use Models\ComplementoAdmin;
 use Models\Perfil;
@@ -31,9 +32,14 @@ class adminController{
     }
 
     public function index(){
-        $te = new \Views\Template();
-        $datos = $this->cargarlista();
-        return $datos ;
+        //session_start();
+        //echo $_SESSION['Personal_per_codigo'];
+        $this->persona->set("per_codigo",$_SESSION['Personal_per_codigo']);
+        $datos = $this->persona->view();
+        foreach ($datos as $row){
+            $datos = $row;
+            return $datos;
+        }
     }
 
     public function agregarPersona(){
