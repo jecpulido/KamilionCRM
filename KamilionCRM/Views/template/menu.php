@@ -12,7 +12,7 @@
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['usu_id'];?> <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> <?php if(isset($_SESSION['usu_id'])){ echo $_SESSION['usu_id'];}else{header("Location:".URL."login/");}?> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="<?php echo URL;?>admin/"><i class="fa fa-user fa-fw"></i> Perfil</a>

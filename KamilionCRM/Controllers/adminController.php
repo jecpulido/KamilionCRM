@@ -1,6 +1,7 @@
 <?php namespace Controllers;
 
 use Lib\Filtro as Filtro;
+use Lib\Redirecciona;
 use Lib\Session;
 use Models\Cargo;
 use Models\ComplementoAdmin;
@@ -21,6 +22,7 @@ class adminController{
     //Constructor
     public function __construct(){
       try {
+
         $this->persona = new Persona();
         $this->cargo = new Cargo();
         $this->complementoAdmin = new ComplementoAdmin();

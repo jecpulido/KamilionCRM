@@ -5,19 +5,12 @@ use Lib\Session;
 $template = new Template();
 
 class Template{
-    private static $instancia;
-    public static function singleton()
-    {
-        if (!isset(self::$instancia)) {
-            $miclase = __CLASS__;
-            self::$instancia = new $miclase;
-        }
-        return self::$instancia;
-    }
+
     public function __construct(){
             session_start();
             $ruta = $_SERVER['REQUEST_URI'];
             $ruta=explode("/", $ruta);
+            //print_r($ruta);
             ?>
             <!DOCTYPE html>
             <html lang="es">
