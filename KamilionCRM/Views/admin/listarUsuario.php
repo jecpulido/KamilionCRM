@@ -58,7 +58,7 @@
                         <td><?php echo ($row['per_estado']==1) ? "Activo":"Inactivo"; ?></td>
                         <td><?php echo $row['Perfil_perf_id']; ?></td>
                         <td><?php echo $row['usu_jefe']; ?></td>
-                        <td><a class="btn btn-success" href="<?php echo URL; ?>admin/editarPersona/<?php echo $row['per_codigo']; ?>">Editar</a>
+                        <td><a class="btn btn-success" href="<?php echo URL; ?>admin/editarUsuario/<?php echo $row['per_codigo']; ?>">Editar</a>
                         </td>
                     </tr>
                 <?php } ?>

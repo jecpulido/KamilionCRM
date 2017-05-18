@@ -54,7 +54,14 @@ use Lib\etCRM;
     }
     //Actualizar
     public function edit(){
-
+       try{
+           $this->param = $this->validarAtributos();
+           //print_r($this->param);
+           $a = array("usu_id"=>array_shift($this->param));
+           $this->con->update("usuarios",$this->param,$a);
+       }catch (\Exception $exception){
+           throw $exception;
+       }finally{}
     }
     //Buscar por filtro
     public function sinUsu(){

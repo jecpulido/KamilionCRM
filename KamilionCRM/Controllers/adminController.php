@@ -146,7 +146,7 @@ class adminController{
                 $this->persona->set("per_codigo",$codigo);
                 $datos = $this->persona->view();
                 foreach ($datos as $row){
-                    $datos = $row;                }
+                $datos = $row;                }
                 $datos = array("persona"=>$datos,"perfil"=>$perfil);
                 //print_r($datos);
                 return $datos;
@@ -174,6 +174,36 @@ class adminController{
             $usucon = $this->usuario->conUsu();
             $datos = array("sin"=>$ususin,"con"=>$usucon);
             return $datos;
+        }
+    }
+
+    public function editarUsuario($codigo){
+        try{
+            if(!$_POST){
+                $perfil = $this->perfil->listar();
+                $this->persona->set("per_codigo",$codigo);
+                $persona = $this->persona->view();
+                $this->usuario->set("Personal_per_codigo",$codigo);
+                $usuario = $this->usuario->view();
+                $datos=array("usuario"=>$usuario[0],"perfil"=>$perfil,"persona"=>$persona[0]);
+                //print_r($datos);
+                return $datos ;
+            }else{
+                //print $_SESSION['usu_id'];
+                $this->usuario->set("usu_id",$_POST['usu_id']);
+                $this->usuario->set("Personal_per_codigo",$_POST['Personal_per_codigo']);
+                $this->usuario->set("Perfil_perf_id",$_POST['Perfil_perf_id']);
+                $this->usuario->set("usu_jefe",$_POST['usu_jefe']);
+                if ($_POST['usu_pass'] ===$_POST['usu_pass2'] ){
+                    $this->usuario->set("usu_pass",Filtro::encriptar($_POST['usu_pass']));
+                }else{
+                    throw new \Exception("Las Contraseñas no coinciden");
+                }
+                $this->usuario->edit();
+                header("Location: " . URL . "admin/listarUsuario");
+            }
+        }catch (\Exception $exception){
+            $_SESSION['Error'] = $exception->getMessage();
         }
     }
 

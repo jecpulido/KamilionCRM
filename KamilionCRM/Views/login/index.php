@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>KamilionCRM | Login</title>
-    <link rel="stylesheet" href="../template/css/bootstrap.css">
-    <link rel="stylesheet" href="<?php echo URL; ?>Views/template/assets/bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../template/assets/bower_components/metisMenu/dist/metisMenu.min.css">
-    <link rel="stylesheet" href="../template/assets/dist/css/sb-admin-2.css">
-    <link rel="stylesheet" href="../template/css/jquery-confirm.min.css">
-    <link rel="stylesheet" href="../template/assets/bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../template/css/general.css">
-</head>
-<body>
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
@@ -45,10 +31,4 @@
         </div>
     </div>
 </div>
-<script src="../template/assets/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="../template/assets/js/jquery-confirm.min.js"></script>
-<script src="../template/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../template/assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-<script src="../template/assets/dist/js/sb-admin-2.js"></script>
-</body>
-</html>
+

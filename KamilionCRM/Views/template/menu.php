@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -7,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">crm kamilion</a>
+        <a class="navbar-brand title-nav-bar" href="<?php echo URL;?>admin/">CRM KAMILION</a>
     </div>
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
@@ -32,9 +31,9 @@
                     <div class="form-group">
                       <div class="input-group">
                         <!-- <span class="input-group-addon">$</span> -->
-                        <input type="text" class="form-control" placeholder="Buscar caso...">
+                        <input type="text" class="form-control" placeholder="Buscar caso..." style="border: 1px solid gray !important; border-radius: 2px; padding: 10px">
                         <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">Buscar</i></button>
+                          <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
                         </span>
                       </div>
                     </div>
@@ -50,7 +49,6 @@
                     <a href="#"><i class="fa fa-wrench fa-fw"></i> Usuarios</a>
                     <ul class="nav nav-second-level">
                         <li><a href="<?php echo URL;?>admin/listarUsuario">Listado</a></li>
-                        <li><a href="<?php echo URL;?>admin/agregarUsuario">Agregar</a></li>
                     </ul>
                 </li>
             </ul>

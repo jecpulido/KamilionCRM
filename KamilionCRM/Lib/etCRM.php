@@ -67,11 +67,9 @@ class etCRM{
 
           $statement->execute();
 
-      }catch (\PDOException $PDOException){
-          $msj =  $PDOException->getMessage();
       }catch (\Exception $exception){
           throw  $exception;
-      }
+      }finally{}
     }
 
     public function select($tabla,$col=null,$where=null){
