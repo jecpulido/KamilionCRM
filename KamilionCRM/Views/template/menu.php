@@ -39,16 +39,23 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#">Personal</a>
+                    <a href="#"><i class="fa fa-male"></i> Personal</a>
                     <ul class="nav nav-second-level">
                         <li><a href="<?php echo URL;?>admin/agregarPersona"> Agregar</a></li>
                         <li><a href="<?php echo URL;?>admin/listarPersona"> Listar</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Usuarios</a>
+                    <a href="#"><i class="fa fa-user"></i> Usuarios</a>
                     <ul class="nav nav-second-level">
                         <li><a href="<?php echo URL;?>admin/listarUsuario">Listado</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-arrow-down"></i> Inbound</a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?php echo URL;?>inbound/">Asignados</a></li>
+                        <li><a href="<?php echo URL;?>inbound/registroInbound">Registro</a></li>
                     </ul>
                 </li>
             </ul>
