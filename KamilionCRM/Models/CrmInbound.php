@@ -18,6 +18,7 @@
     private $crm_Escalamiento;
     private $crm_FechaProgra;
     private $crm_PQR;
+    private $crm_TPQR;
     private $crm_Equipo;
     private $crm_Barrio;
     private $crm_Inconsistencia;
