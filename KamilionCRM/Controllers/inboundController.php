@@ -14,6 +14,10 @@
 
 		}
 
+        public function registroInbound(){
+
+        }
+
 		public function asignar(){
 
 		}

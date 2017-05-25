@@ -54,8 +54,8 @@
                 <li>
                     <a href="#"><i class="fa fa-arrow-down"></i> Inbound</a>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?php echo URL;?>inbound/">Asignados</a></li>
-                        <li><a href="<?php echo URL;?>inbound/registroInbound">Registro</a></li>
+                        <li><a href="<?php echo URL;?>inbound/index"> Asignados</a></li>
+                        <li><a href="<?php echo URL;?>inbound/registroInbound"> Registro</a></li>
                     </ul>
                 </li>
             </ul>
