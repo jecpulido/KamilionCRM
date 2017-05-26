@@ -34,7 +34,6 @@ class etCRM{
 
         }
     }
-
     public function update($tabla,$var,$where){
       try{
           $whe = "";
@@ -71,7 +70,6 @@ class etCRM{
           throw  $exception;
       }finally{}
     }
-
     public function select($tabla,$col=null,$where=null){
     try{
         $datos=array();
@@ -108,7 +106,6 @@ class etCRM{
       }
         return $datos;
     }
-
     public function selectAvanzado($sql,$where=null){
         try{
             $datos=array();

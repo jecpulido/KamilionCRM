@@ -1,13 +1,17 @@
 <?php namespace Controllers;
 
-	class inboundController{
+	use Models\EquipoStandar;
 
-    /*    *Atributos*    */
+class inboundController{
+		private $equipo;
 
-    /*    *Metodos*    */
     //Constructor
 		public function __construct(){
+			try{
+				$this->equipo = new EquipoStandar();
+			}catch (\Exception $exception){
 
+			}
 		}
 
 		public function index(){
@@ -15,6 +19,14 @@
 		}
 
         public function registroInbound(){
+			if(!$_POST){
+                $marca = $this->equipo->listarMarca();
+                $datos = array('marca'=>$marca);
+                return $datos;
+			}
+        }
+
+        public function gestionInbound(){
 
         }
 

@@ -1,17 +1,17 @@
 <div class="box-principal">
     <fieldset class="panelregistro">
         <h2 class="page-header">REGISTRO INBOUND</h2>
-        <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data" >
-            <div class="panel panel-primary " >
+        <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+            <div class="panel panel-primary ">
                 <div class="panel-heading">
                     <h3 class="panel-title">REGISTRO</h3>
                 </div>
                 <fieldset class="panelregistro">
-                    <div class="" >
+                    <div class="">
                         <!-- ID AVAYA -->
                         <div class="form-registro form-group col-md-6">
                             <label for="inb_IdLlamada" class="control-label">ID AVAYA</label>
-                            <input class="form-control" id ="inb_IdLlamada" name="inb_IdLlamada" type="number" required>
+                            <input class="form-control" id="inb_IdLlamada" name="inb_IdLlamada" type="number" required>
                         </div>
                         <!-- codigo -->
                         <div class="form-registro form-group col-md-6">
@@ -22,30 +22,35 @@
                         <!-- Nombre -->
                         <div class="form-registro form-group col-md-6">
                             <label for="inb_MinCliente" class="control-label">MIN</label>
-                            <input class="form-control" id="inb_MinCliente" name="inb_MinCliente" type="number" >
+                            <input class="form-control" id="inb_MinCliente" name="inb_MinCliente" type="number">
                         </div>
                         <!-- apellido -->
                         <div class="form-registro form-group col-md-6">
                             <label for="inb_MinAlternoCliente" class="control-label">MIN ALTERNO</label>
-                            <input class="form-control" id="inb_MinAlternoCliente" name="inb_MinAlternoCliente" type="number" required>
+                            <input class="form-control" id="inb_MinAlternoCliente" name="inb_MinAlternoCliente"
+                                   type="number" required>
                         </div>
 
                         <!-- Fecha nacimiento -->
                         <div class="form-registro form-group col-md-6">
                             <label for="inb_UsuarioReporta" class="control-label">USUARIO REPORTA</label>
-                            <input class="form-control" id="inb_UsuarioReporta" name="inb_UsuarioReporta" type="text" required>
+                            <input class="form-control" id="inb_UsuarioReporta" name="inb_UsuarioReporta" type="text"
+                                   required>
                         </div>
                         <!-- genero -->
                         <div class="form-registro form-group col-md-6">
                             <label for="inb_NombreCliente" class="control-label">NOMBRE CLIENTE</label>
-                            <input class="form-control" id="inb_NombreCliente" name="inb_NombreCliente" type="text" required>
+                            <input class="form-control" id="inb_NombreCliente" name="inb_NombreCliente" type="text"
+                                   required>
                         </div>
 
                         <!-- telefono -->
                         <div class="form-registro form-group col-md-6">
                             <label for="crm_marca" class="control-label">MARCA</label>
                             <select id="crm_marca" name="crm_marca" class="form-control">
-                                <option value=""></option>
+                                <?php foreach ($datos['marca'] as $row) { ?>
+                                    <option value="<?php echo $row['eq_marca'] ?>"><?php echo $row['eq_marca'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <!-- celular -->
@@ -82,7 +87,7 @@
                     <h3 class="panel-title">DIAGNOSTICO</h3>
                 </div>
                 <fieldset class="panelregistro">
-                    <div class="" >
+                    <div class="">
                         <!-- ID AVAYA -->
                         <div class="form-registro form-group col-md-6">
                             <label for="crm_LServicio" class="control-label">LINEA SERVICIO</label>
@@ -127,7 +132,7 @@
                     <h3 class="panel-title">CIERRE</h3>
                 </div>
                 <fieldset class="panelregistro">
-                    <div class="" >
+                    <div class="">
                         <!-- ID AVAYA -->
                         <div class="form-registro form-group col-md-6">
                             <label for="crm_Tipificacion" class="control-label">ESTADO</label>
@@ -146,7 +151,7 @@
                         <!-- Nombre -->
                         <div class="form-registro form-group col-md-6">
                             <label for="crm_PQR" class="control-label">PQR</label>
-                            <input class="form-control" id="crm_PQR" name="crm_PQR" type="text" >
+                            <input class="form-control" id="crm_PQR" name="crm_PQR" type="text">
                         </div>
                         <!-- apellido -->
                         <div class="form-registro form-group col-md-6">
@@ -165,20 +170,23 @@
                         </div>
                         <div class="form-registro form-group col-md-6">
                             <label for="crm_FechaProgra" class="control-label">FECHA PROGRAMADO</label>
-                            <input class="form-control" id="crm_FechaProgra" name="crm_FechaProgra" type="text" maxlength="80">
+                            <input class="form-control" id="crm_FechaProgra" name="crm_FechaProgra" type="text"
+                                   maxlength="80">
                         </div>
 
                     </div>
 
                 </fieldset>
                 <div class="panel-heading">
-                    <h3 class="panel-title"><label for="crm_Observacion" style="margin-bottom: 0px !important;">OBSERVACION</label></h3>
+                    <h3 class="panel-title"><label for="crm_Observacion" style="margin-bottom: 0px !important;">OBSERVACION</label>
+                    </h3>
                 </div>
                 <fieldset class="panelregistro">
-                    <div class="" >
+                    <div class="">
                         <!-- ID AVAYA -->
                         <div class="form-registro form-group col-md-12">
-                            <textarea class="form-control" rows="3" id="crm_Observacion" name="crm_Observacion" ></textarea>
+                            <textarea class="form-control" rows="3" id="crm_Observacion"
+                                      name="crm_Observacion"></textarea>
                         </div>
                     </div>
                 </fieldset>

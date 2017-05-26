@@ -84,7 +84,7 @@ class Filtro{
                     $sel[] = $v;
                 }
             }
-//            print_r($sel);
+            //print_r($sel);
             foreach ($sel as $key => &$v){
                if (strpos($v, "id") ){
                    $id = array($v=>"0");
@@ -95,6 +95,33 @@ class Filtro{
                }
             }
            array_unshift($var,$id);
+            //print_r($var);
+            return $var;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    public static function llenar_listaU($var){
+        try {
+            $sel = array();
+            foreach (array_keys($var[0]) as $key => &$v){
+                if(is_string($v)){
+                    $sel[] = $v;
+                }
+            }
+            //print_r($sel);
+            foreach ($sel as $key => &$v){
+                if (strpos($v, "id") ){
+                    $id = array($v=>"0");
+                }elseif (strpos($v, "desc") ){
+                    $id = $id + array($v=>"- Seleccione -");
+                }else{
+                    $id = array($v=>'- Seleccione -');
+                }
+            }
+            array_unshift($var,$id);
+            //print_r($var);
             return $var;
         } catch (\Exception $e) {
             throw $e;
