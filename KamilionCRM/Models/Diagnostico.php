@@ -1,8 +1,11 @@
 <?php namespace Models;
 
-  class Diagnostico{
+  use Lib\etCRM;
+use Lib\Filtro;
 
-    /*    *Atributos*    */
+class Diagnostico{
+
+
     private $diag_id;
     private $diag_Tipificacion1;
     private $diag_Tipificacion2;
@@ -10,11 +13,16 @@
     private $diag_Tipificacion4;
     private $diag_Cod_diagnostico;
     private $diag_Pertenece;
+    private $atributos = array("diag_id", "diag_Tipificacion1", "diag_Tipificacion2", "diag_Tipificacion3", "diag_Tipificacion4", "diag_Cod_diagnostico", "diag_Pertenece");
+    private $var;
 
-    /*    *Metodos*    */
     //Constructor
     public function __construct(){
+      try{
+        $this->con = new etCRM();
+      }catch (\Exception $exception){
 
+      }
     }
 
     //Metodo set
@@ -26,34 +34,39 @@
       return $this->$atributo;
     }
     //Buscar Todo
-    public function listar(){
-      $sql = "SELECT * FROM diagnostico WHERE diag_id='{$this->diag_id}'";
-      $datos = $this->con->consultaRetorno($sql);
-      return $datos;
-    }
-    //insertar
-    public function add(){
-      $sql = "INSERT INTO diagnostico(diag_id, diag_Tipificacion1, diag_Tipificacion2, diag_Tipificacion3, diag_Tipificacion4, diag_Cod_diagnostico, diag_Pertenece) VALUES (null,'','','','','','')";
-      $this->con->consultaSimple($sql);
-    }
-    //Eliminar
-    public function delete(){
-      $sql = "DELETE FROM diagnostico WHERE diag_id='{$this->diag_id}'";
-      $this->con->consultaSimple($sql);
-    }
-    //Actualizar
-    public function edit(){
-      $sql = "UPDATE diagnostico SET diag_Tipificacion1='',diag_Tipificacion2='',diag_Tipificacion3='',diag_Tipificacion4='',diag_Cod_diagnostico='',diag_Pertenece='' WHERE diag_id='{$this->diag_id}' ";
-      $this->con->consultaSimple($sql);
-    }
-    //Buscar por filtro
-    public function view(){
-      $sql = "SELECT * FROM `diagnostico` WHERE diag_id='{$this->diag_id}'";
-      $datos = $this->con->consultaRetorno($sql);
-      $row = mysqli_fetch_assoc($datos);
-      return $row;
-    }
+    public function listar(){}
 
+    //insertar
+    public function add(){}
+
+    //Eliminar
+    public function delete(){}
+
+    //Actualizar
+    public function edit(){}
+
+    //Buscar por filtro
+    public function view(){}
+
+    public function listarLineaServicio(){
+        $sql = "SELECT diag_Tipificacion1 FROM diagnostico WHERE diag_Pertenece='servicio1' GROUP BY diag_Tipificacion1";
+        $datos = $this->con->selectAvanzado($sql);
+        //print_r($datos);
+        $datos = Filtro::llenar_listaU($datos);
+        return $datos;
+    }
+    public function validarAtributos()
+    {
+        foreach ($this->atributos as $v) {
+            if (!empty($this->get($v))) {
+                $this->var[$v] = $this->get($v);
+            }
+        }
+        if (empty($this->var)) {
+            $this->var = null;
+        }
+        return $this->var;
+    }
   }
 
  ?>

@@ -15,6 +15,7 @@ class Template{
             <!DOCTYPE html>
             <html lang="es">
             <head>
+
                 <?php include TEMPLATE . "head.php"; ?>
             </head>
             <body>

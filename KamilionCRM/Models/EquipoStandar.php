@@ -8,38 +8,37 @@
 
 namespace Models;
 
-
 use Lib\etCRM;
 use Lib\Filtro;
-
 class EquipoStandar
 {
-
-
     private $eq_equipo;
     private $eq_marca;
     private $atributos = array("eq_equipo", "eq_marca");
     private $var;
 
-//Constructor
-    public function __construct()
-    {
-        $this->con = new etCRM();
+    //Constructor
+    public function __construct()    {
+        try{
+            $this->con = new etCRM();
+        }catch (\Exception $exception){
+
+        }
     }
 
-//Metodo set
+    //Metodo set
     public function set($atributo, $contenido)
     {
         $this->$atributo = $contenido;
     }
 
-//Metodo get
+    //Metodo get
     public function get($atributo)
     {
         return $this->$atributo;
     }
 
-//Buscar Todo
+    //Buscar Todo
     public function listar()
     {
         $this->param = $this->validarAtributos();
@@ -48,7 +47,7 @@ class EquipoStandar
         return $datos;
     }
 
-    //Buscar Todo
+    //Listar Marca
     public function listarMarca()
     {
         $sql = "select eq_marca from equipostandar group BY eq_marca";
@@ -57,26 +56,37 @@ class EquipoStandar
         $datos = Filtro::llenar_listaU($datos);
         return $datos;
     }
-//insertar
+
+    //List Equipo
+    public function listarEquipo($eq_marca)
+    {
+        $sql = "select eq_equipo from equipostandar where eq_marca=".$eq_marca;
+        echo $sql;
+        $datos = $this->con->selectAvanzado($sql);
+        print_r($datos);
+        $datos = Filtro::llenar_listaU($datos);
+        return $datos;
+    }
+    //insertar
     public function add()
     {
         $this->param = $this->validarAtributos();
         $this->con->insert("equipoStandar", $this->param);
     }
 
-//Eliminar
+    //Eliminar
     public function delete()
     {
 
     }
 
-//Actualizar
+    //Actualizar
     public function edit()
     {
 
     }
 
-//Buscar por filtro
+    //Buscar por filtro
     public function view()
     {
         try {

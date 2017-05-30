@@ -57,7 +57,6 @@ class Persona{
       } catch (\Exception $exception) {
 
       }
-
     }
     //Eliminar
     public function remove(){

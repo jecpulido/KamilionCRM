@@ -1,8 +1,11 @@
 <?php namespace Models;
 
-  class Inbound{
+use Lib\etCRM;
 
-    /*    *Atributos*    */
+class Inbound
+{
+
+
     private $inb_Caso;
     private $Usuarios_usu_id;
     private $inb_IdLlamada;
@@ -13,50 +16,103 @@
     private $inb_MinAlternoCliente;
     private $inb_Ciudad;
     private $inb_UsuarioReporta;
+    private $atributos = array("inb_Caso", "Usuarios_usu_id", "inb_IdLlamada", "inb_FechaIngreso", "inb_Estado", "inb_NombreCliente", "inb_MinCliente", "inb_MinAlternoCliente", "inb_Ciudad", "inb_UsuarioReporta");
+    private $var;
 
-    /*    *Metodos*    */
     //Constructor
-    public function __construct(){
+    public function __construct()
+    {
+        try {
+            $this->con = new etCRM();
+        } catch (\Exception $exception) {
 
+        }
     }
 
     //Metodo set
-    public function set($atributo,$contenido){
-      $this->$atributo = $contenido;
+    public function set($atributo, $contenido)
+    {
+        $this->$atributo = $contenido;
     }
+
     //Metodo get
-    public function get($atributo){
-      return $this->$atributo;
+    public function get($atributo)
+    {
+        return $this->$atributo;
     }
+
     //Buscar Todo
-    public function listar(){
-      $sql = "SELECT * FROM inbound";
-      $datos = $this->con->consultaRetorno($sql);
-      return $datos;
+    public function listar()
+    {
+
     }
+
     //insertar
-    public function add(){
-      $sql = "INSERT INTO inbound(inb_Caso, Usuarios_usu_id, inb_IdLlamada, inb_FechaIngreso, inb_Estado, inb_NombreCliente, inb_MinCliente, inb_MinAlternoCliente, inb_Ciudad, inb_UsuarioReporta) VALUES (null,'','','','','','','','','')";
-      $this->con->consultaSimple($sql);
+    public function add()
+    {
+        try {
+            $this->param = $this->validarAtributos();
+            //print_r($this->param);
+            $this->con->insert("inbound", $this->param);
+
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
     }
+
     //Eliminar
-    public function delete(){
-      $sql = "DELETE FROM inbound WHERE inb_Caso='{$this->inb_Caso}'";
-      $this->con->consultaSimple($sql);
+    public function delete()
+    {
+
     }
+
+    //Eliminar
+    public function buscarCaso(){
+        try{
+            $this->param = $this->validarAtributos();
+            $datos = $this->con->select("Inbound",null,$this->param);
+            return $datos;
+        }catch (\Exception $exception){
+            throw $exception;
+        }
+    }
+
     //Actualizar
     public function edit(){
-      $sql = "UPDATE inbound SET Usuarios_usu_id='',inb_IdLlamada='',inb_FechaIngreso='',inb_Estado='',inb_NombreCliente='',inb_MinCliente='',inb_MinAlternoCliente='',inb_Ciudad='',inb_UsuarioReporta='' WHERE inb_Caso='{$this->inb_Caso}'";
-      $this->con->consultaSimple($sql);
+        try {
+            $this->param = $this->validarAtributos();
+            //print_r($this->param);
+            $a = array("inb_Caso"=>array_shift($this->param));
+            $this->con->update("Inbound",$this->param,$a);
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
     }
+
     //Buscar por filtro
-    public function view(){
-      $sql = "SELECT * FROM inbound WHERE inb_caso='{$this->inb_Caso}'";
-      $datos = $this->con->consultaRetorno($sql);
-      $row = mysqli_fetch_assoc($datos);
-      return $row;
+    public function verPendientes(){
+        try{
+            $this->param = $this->validarAtributos();
+            $sql = "SELECT inbound.* FROM inbound  where inb_Estado<>'Cerrado' and inb_Estado NOT LIKE '%Esca%'";
+            $datos = $this->con->selectAvanzado($sql,null);
+            return $datos;
+        }catch (\Exception $exception){
+            throw $exception;
+        }
     }
 
-  }
+    public function validarAtributos()
+    {
+        foreach ($this->atributos as $v) {
+            if (!empty($this->get($v))) {
+                $this->var[$v] = $this->get($v);
+            }
+        }
+        if (empty($this->var)) {
+            $this->var = null;
+        }
+        return $this->var;
+    }
+}
 
- ?>
+?>

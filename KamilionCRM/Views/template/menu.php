@@ -31,9 +31,10 @@
                     <div class="form-group">
                       <div class="input-group">
                         <!-- <span class="input-group-addon">$</span> -->
-                        <input type="text" class="form-control" placeholder="Buscar caso..." style="border: 1px solid gray !important; border-radius: 2px; padding: 10px">
+                        <input type="text" class="form-control" id="casoMenu" placeholder="Buscar caso..." style="border: 1px solid gray !important; border-radius: 2px; padding: 10px">
+                          <label id="url" hidden><?php echo URL;?></label>
                         <span class="input-group-btn">
-                          <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+                          <button class="btn btn-primary" id="buscarCaso" type="button"><i class="fa fa-search"></i></button>
                         </span>
                       </div>
                     </div>

@@ -12,4 +12,6 @@
   define("IV","kam456");
   //METHOD
   define("METHOD","AES-256-CBC");
+  //RUTA
+  define('SITE_PATH', 'C:/xampp/htdocs/KamilionCRM/trunk/KamilionCRM/');
  ?>

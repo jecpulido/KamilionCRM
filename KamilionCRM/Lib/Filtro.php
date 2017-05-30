@@ -9,7 +9,7 @@
 namespace Lib;
 
 class Filtro{
-    public static function filtro_string($var=null,$nombre){
+    public static function filtro_string($var,$nombre=null){
       try {
         if (!empty($var)){
           if(is_string($var)){
@@ -30,10 +30,10 @@ class Filtro{
     public static function filtro_int($var){
       try {
         if (!empty($var)) {
-            if (is_int($var)) {
+            if (is_numeric($var)) {
                 return $var;
             } else {
-                throw new \Exception("Variable no se encuentra definida");
+                throw new \Exception("Dato debe ser numerico");
             }
         }else{
           throw new \Exception("Variable no se encuentra definida");

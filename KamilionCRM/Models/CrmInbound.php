@@ -1,8 +1,10 @@
 <?php namespace Models;
 
-  class CrmInbound{
+  use Lib\etCRM;
 
-    /*    *Atributos*    */
+class CrmInbound{
+
+
     private $crm_id;
     private $Division_Politica_divp_if;
     private $Inbound_inb_Caso;
@@ -22,11 +24,17 @@
     private $crm_Equipo;
     private $crm_Barrio;
     private $crm_Inconsistencia;
+    private $atributos = array("crm_id", "Division_Politica_divp_if", "Inbound_inb_Caso", "Usuarios_usu_id", "crm_FechaRegistro", "crm_Servicio", "crm_Solicitud", "crm_CausaRaiz", "crm_CategoriaCierre", "crm_Tipificacion", "crm_Observacion", "crm_MinAlterno", "crm_Escalamiento", "crm_FechaProgra", "crm_PQR", "crm_TPQR", "crm_Equipo", "crm_Barrio", "crm_Inconsistencia");
+    private $var;
 
-    /*    *Metodos*    */
+
     //Constructor
     public function __construct(){
+        try {
+            $this->con = new etCRM();
+        } catch (\Exception $exception) {
 
+        }
     }
 
     //Metodo set
@@ -39,33 +47,55 @@
     }
     //Buscar Todo
     public function listar(){
-      $sql = "SELECT * FROM crm_inbound";
-      $datos = $this->con->consultaRetorno($sql);
-      return $datos;
+
     }
     //insertar
     public function add(){
-      $sql = "INSERT INTO crm_inbound(Division_Politica_divp_if, Inbound_inb_Caso, Usuarios_usu_id, crm_FechaRegistro, crm_Servicio, crm_Solicitud, crm_CausaRaiz, crm_CategoriaCierre, crm_Tipificacion, crm_Observacion, crm_MinAlterno, crm_Escalamiento, crm_FechaProgra, crm_PQR, crm_Equipo, crm_Barrio, crm_Inconsistencia) VALUES ('','','','','','','','','','','','','','','','','')";
-      $this->con->consultaSimple($sql);
+        try {
+            $this->param = $this->validarAtributos();
+            //print_r($this->param);
+            $this->con->insert("crm_inbound", $this->param);
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
     }
+
+    //Buscar Todo
+    public function buscarGestiones(){
+        try{
+            $this->param = $this->validarAtributos();
+            $datos = $this->con->select("crm_inbound",null,$this->param);
+            return $datos;
+        }catch (\Exception $exception){
+            throw $exception;
+        }
+    }
+
     //Eliminar
     public function delete(){
-      $sql = "DELETE FROM crm_inbound WHERE crm_id='{$this->crm_id}'";
-      $this->con->consultaSimple($sql);
+
     }
     //Actualizar
     public function edit(){
-      $sql = "UPDATE crm_inbound SET Division_Politica_divp_if='',Inbound_inb_Caso='',Usuarios_usu_id='',crm_FechaRegistro='',crm_Servicio='',crm_Solicitud='',crm_CausaRaiz='',crm_CategoriaCierre='',crm_Tipificacion='',crm_Observacion='',crm_MinAlterno='',crm_Escalamiento='',crm_FechaProgra='',crm_PQR='',crm_Equipo='',crm_Barrio='',crm_Inconsistencia='' WHERE crm_id='{$this->crm_id}'";
-      $this->con->consultaSimple($sql);
+
     }
     //Buscar por filtro
     public function view(){
-      $sql = "SELECT * FROM `crm_inbound` WHERE crm_id='{$this->crm_id}'";
-      $datos = $this->con->consultaRetorno($sql);
-      $row = mysqli_fetch_assoc($datos);
-      return $row;
+
     }
 
+      public function validarAtributos()
+      {
+          foreach ($this->atributos as $v) {
+              if (!empty($this->get($v))) {
+                  $this->var[$v] = $this->get($v);
+              }
+          }
+          if (empty($this->var)) {
+              $this->var = null;
+          }
+          return $this->var;
+      }
   }
 
  ?>

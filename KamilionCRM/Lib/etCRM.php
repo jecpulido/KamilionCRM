@@ -29,9 +29,9 @@ class etCRM{
             $statement->execute();
 
         }catch (\PDOException $PDOException){
-
+           throw $PDOException;
         }catch (\Exception $exception){
-
+           throw $exception;
         }
     }
     public function update($tabla,$var,$where){
