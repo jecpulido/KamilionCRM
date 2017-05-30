@@ -6,20 +6,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand title-nav-bar" href="<?php echo URL;?>admin/">CRM KAMILION</a>
+        <a class="navbar-brand title-nav-bar" href="<?php echo URL; ?>admin/">CRM KAMILION</a>
     </div>
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> <?php if(isset($_SESSION['usu_id'])){ echo $_SESSION['usu_id'];}else{header("Location:".URL."login/");}?> <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> <?php if (isset($_SESSION['usu_id'])) {
+                    echo $_SESSION['usu_id'];
+                } else {
+                    header("Location:" . URL . "login/");
+                } ?> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="<?php echo URL;?>admin/"><i class="fa fa-user fa-fw"></i> Perfil</a>
+                <li><a href="<?php echo URL; ?>admin/"><i class="fa fa-user fa-fw"></i> Perfil</a>
                 </li>
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="<?php echo URL;?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
+                <li><a href="<?php echo URL; ?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
                 </li>
             </ul>
         </li>
@@ -29,34 +33,36 @@
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
                     <div class="form-group">
-                      <div class="input-group">
-                        <!-- <span class="input-group-addon">$</span> -->
-                        <input type="text" class="form-control" id="casoMenu" placeholder="Buscar caso..." style="border: 1px solid gray !important; border-radius: 2px; padding: 10px">
-                          <label id="url" hidden><?php echo URL;?></label>
-                        <span class="input-group-btn">
-                          <button class="btn btn-primary" id="buscarCaso" type="button"><i class="fa fa-search"></i></button>
+                        <div class="input-group">
+                            <!-- <span class="input-group-addon">$</span> -->
+                            <input type="text" class="form-control" id="casoMenu" placeholder="Buscar caso..."
+                                   style="border: 1px solid gray !important; border-radius: 2px; padding: 10px">
+                            <label id="url" hidden><?php echo URL; ?></label>
+                            <span class="input-group-btn">
+                          <button class="btn btn-primary" id="buscarCaso" type="button"><i
+                                      class="fa fa-search"></i></button>
                         </span>
-                      </div>
+                        </div>
                     </div>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-male"></i> Personal</a>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?php echo URL;?>admin/agregarPersona"> Agregar</a></li>
-                        <li><a href="<?php echo URL;?>admin/listarPersona"> Listar</a></li>
+                        <li><a href="<?php echo URL; ?>admin/agregarPersona"> Agregar</a></li>
+                        <li><a href="<?php echo URL; ?>admin/listarPersona"> Listar</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-user"></i> Usuarios</a>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?php echo URL;?>admin/listarUsuario">Listado</a></li>
+                        <li><a href="<?php echo URL; ?>admin/listarUsuario">Listado</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-arrow-down"></i> Inbound</a>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?php echo URL;?>inbound/index"> Asignados</a></li>
-                        <li><a href="<?php echo URL;?>inbound/registroInbound"> Registro</a></li>
+                        <li><a href="<?php echo URL; ?>inbound/index">Asignados</a></li>
+                        <li><a href="<?php echo URL; ?>inbound/registroInbound">Registro</a></li>
                     </ul>
                 </li>
             </ul>

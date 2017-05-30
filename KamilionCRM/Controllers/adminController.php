@@ -9,7 +9,8 @@ use Models\Perfil;
 use Models\Persona;
 use Models\Usuario;
 
-class adminController{
+class adminController
+{
 
     /*    *Atributos*    */
     private $persona;
@@ -20,42 +21,45 @@ class adminController{
     private $usuario;
 
     //Constructor
-    public function __construct(){
-      try {
+    public function __construct()
+    {
+        try {
 
-        $this->persona = new Persona();
-        $this->cargo = new Cargo();
-        $this->complementoAdmin = new ComplementoAdmin();
-        $this->usuario = new Usuario();
-        $this->perfil = new Perfil();
-      } catch (\Exception $e) {
+            $this->persona = new Persona();
+            $this->cargo = new Cargo();
+            $this->complementoAdmin = new ComplementoAdmin();
+            $this->usuario = new Usuario();
+            $this->perfil = new Perfil();
+        } catch (\Exception $e) {
 
-      }
+        }
     }
 
-    public function index(){
+    public function index()
+    {
         //session_start();
         //echo $_SESSION['Personal_per_codigo'];
-        $this->persona->set("per_codigo",$_SESSION['Personal_per_codigo']);
+        $this->persona->set("per_codigo", $_SESSION['Personal_per_codigo']);
         $datos = $this->persona->view();
-        foreach ($datos as $row){
+        foreach ($datos as $row) {
             $datos = $row;
             return $datos;
         }
     }
 
-    public function agregarPersona(){
-        try{
-            if(!$_POST){
+    public function agregarPersona()
+    {
+        try {
+            if (!$_POST) {
                 $datos = $this->cargarlista();
-                return $datos ;
-            }else{
+                return $datos;
+            } else {
                 $permitidos = array("image/jpeg", "image/png", "image/gif", "image/jpg");
                 $limite = 700;
-                if(in_array($_FILES['foto']['type'], $permitidos) && $_FILES['foto']['size'] <= $limite * 1024){
+                if (in_array($_FILES['foto']['type'], $permitidos) && $_FILES['foto']['size'] <= $limite * 1024) {
                     $ext = explode(".", $_FILES['foto']['name']);
-                    $nombre = $_POST['per_codigo'].".".$ext[1];
-                    $ruta = "Views" . DS . "template". DS . "imagenes" . DS . "avatars" . DS . $nombre;
+                    $nombre = $_POST['per_codigo'] . "." . $ext[1];
+                    $ruta = "Views" . DS . "template" . DS . "imagenes" . DS . "avatars" . DS . $nombre;
                     move_uploaded_file($_FILES['foto']['tmp_name'], $ruta);
                     $this->persona->set("per_codigo", $_POST['per_codigo']);
                     $this->persona->set("Complemento_Admin_ca_id", $_POST['Complemento_Admin_ca_id']);
@@ -75,24 +79,25 @@ class adminController{
                     $this->persona->set("per_estado", 1);
                     $this->persona->add();
                     header("Location: " . URL . "admin/listarPersona");
-                    }else{
+                } else {
                     //echo "Tipo de archivo no valido";
-                    }
+                }
             }
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
 
         }
     }
 
-    public function editarPersona($codigo){
-        try{
-            if(!$_POST){
-                $this->persona->set("per_codigo",$codigo);
+    public function editarPersona($codigo)
+    {
+        try {
+            if (!$_POST) {
+                $this->persona->set("per_codigo", $codigo);
                 $persona = $this->persona->view();
                 $datos = $this->cargarlista();
-                $datos=array("persona"=>$persona[0])+$datos;
-                return $datos ;
-            }else{
+                $datos = array("persona" => $persona[0]) + $datos;
+                return $datos;
+            } else {
                 $this->persona->set("per_codigo", $_POST['per_codigo']);
                 $this->persona->set("Complemento_Admin_ca_id", $_POST['Complemento_Admin_ca_id']);
                 $this->persona->set("Cargo_carg_id", $_POST['Cargo_carg_id']);
@@ -110,114 +115,122 @@ class adminController{
                 $this->persona->edit();
                 header("Location: " . URL . "admin/listarPersona");
             }
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
 
         }
     }
 
-    public function listarPersona(){
-        try{
+    public function listarPersona()
+    {
+        try {
             $datos = $this->persona->listar();
             return $datos;
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
 
         }
     }
 
-    public function verPersona($codigo){
-        try{
-            $this->persona->set("per_codigo",$codigo);
+    public function verPersona($codigo)
+    {
+        try {
+            $this->persona->set("per_codigo", $codigo);
             $datos = $this->persona->view();
-            foreach ($datos as $row){
+            foreach ($datos as $row) {
                 $datos = $row;
                 return $datos;
             }
 
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
 
         }
     }
 
-    public function agregarUsuario($codigo){
+    public function agregarUsuario($codigo)
+    {
         try {
             if (!$_POST) {
                 $perfil = $this->perfil->listar();
                 //print_r($perfil);
-                $this->persona->set("per_codigo",$codigo);
+                $this->persona->set("per_codigo", $codigo);
                 $datos = $this->persona->view();
-                foreach ($datos as $row){
-                $datos = $row;                }
-                $datos = array("persona"=>$datos,"perfil"=>$perfil);
+                foreach ($datos as $row) {
+                    $datos = $row;
+                }
+                $datos = array("persona" => $datos, "perfil" => $perfil);
                 //print_r($datos);
                 return $datos;
             } else {
-                $this->usuario->set("usu_id",$_POST['usu_id']);
-                $this->usuario->set("Personal_per_codigo",$_POST['Personal_per_codigo']);
-                $this->usuario->set("Perfil_perf_id",$_POST['Perfil_perf_id']);
-                $this->usuario->set("usu_jefe",$_POST['usu_jefe']);
-                if ($_POST['usu_pass'] ===$_POST['usu_pass2'] ){
-                    $this->usuario->set("usu_pass",Filtro::encriptar($_POST['usu_pass']));
-                }else{
+                $this->usuario->set("usu_id", $_POST['usu_id']);
+                $this->usuario->set("Personal_per_codigo", $_POST['Personal_per_codigo']);
+                $this->usuario->set("Perfil_perf_id", $_POST['Perfil_perf_id']);
+                $this->usuario->set("usu_jefe", $_POST['usu_jefe']);
+                if ($_POST['usu_pass'] === $_POST['usu_pass2']) {
+                    $this->usuario->set("usu_pass", Filtro::encriptar($_POST['usu_pass']));
+                } else {
                     throw new \Exception("Las Contraseñas no coinciden");
                 }
                 $this->usuario->add();
                 header("Location: " . URL . "admin/listarUsuario");
             }
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
 
         }
     }
 
-    public function listarUsuario(){
-        if(!$_POST) {
+    public function listarUsuario()
+    {
+        if (!$_POST) {
             $ususin = $this->usuario->sinUsu();
             $usucon = $this->usuario->conUsu();
-            $datos = array("sin"=>$ususin,"con"=>$usucon);
+            $datos = array("sin" => $ususin, "con" => $usucon);
             return $datos;
         }
     }
 
-    public function editarUsuario($codigo){
-        try{
-            if(!$_POST){
+    public function editarUsuario($codigo)
+    {
+        try {
+            if (!$_POST) {
                 $perfil = $this->perfil->listar();
-                $this->persona->set("per_codigo",$codigo);
+                $this->persona->set("per_codigo", $codigo);
                 $persona = $this->persona->view();
-                $this->usuario->set("Personal_per_codigo",$codigo);
+                $this->usuario->set("Personal_per_codigo", $codigo);
                 $usuario = $this->usuario->view();
-                $datos=array("usuario"=>$usuario[0],"perfil"=>$perfil,"persona"=>$persona[0]);
+                $datos = array("usuario" => $usuario[0], "perfil" => $perfil, "persona" => $persona[0]);
                 //print_r($datos);
-                return $datos ;
-            }else{
+                return $datos;
+            } else {
                 //print $_SESSION['usu_id'];
-                $this->usuario->set("usu_id",$_POST['usu_id']);
-                $this->usuario->set("Personal_per_codigo",$_POST['Personal_per_codigo']);
-                $this->usuario->set("Perfil_perf_id",$_POST['Perfil_perf_id']);
-                $this->usuario->set("usu_jefe",$_POST['usu_jefe']);
-                if ($_POST['usu_pass'] ===$_POST['usu_pass2'] ){
-                    $this->usuario->set("usu_pass",Filtro::encriptar($_POST['usu_pass']));
-                }else{
+                $this->usuario->set("usu_id", $_POST['usu_id']);
+                $this->usuario->set("Personal_per_codigo", $_POST['Personal_per_codigo']);
+                $this->usuario->set("Perfil_perf_id", $_POST['Perfil_perf_id']);
+                $this->usuario->set("usu_jefe", $_POST['usu_jefe']);
+                if ($_POST['usu_pass'] === $_POST['usu_pass2']) {
+                    $this->usuario->set("usu_pass", Filtro::encriptar($_POST['usu_pass']));
+                } else {
                     throw new \Exception("Las Contraseñas no coinciden");
                 }
                 $this->usuario->edit();
                 header("Location: " . URL . "admin/listarUsuario");
             }
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $_SESSION['Error'] = $exception->getMessage();
         }
     }
 
-    public function cargarlista(){
+    public function cargarlista()
+    {
         $perfil = $this->cargo->listar();
-        $this->complementoAdmin->set("ca_estado","1");
-        $this->complementoAdmin->set("ca_grupo","tipoDocumento");
+        $this->complementoAdmin->set("ca_estado", "1");
+        $this->complementoAdmin->set("ca_grupo", "tipoDocumento");
         $tipoDocumento = $this->complementoAdmin->listar();
-        $this->complementoAdmin->set("ca_grupo","genero");
+        $this->complementoAdmin->set("ca_grupo", "genero");
         $genero = $this->complementoAdmin->listar();
-        $this->complementoAdmin->set("ca_grupo","estadoCivil");
+        $this->complementoAdmin->set("ca_grupo", "estadoCivil");
         $estadoCivil = $this->complementoAdmin->listar();
-        $datos= array("perfil"=>$perfil,"tipoDocumento"=>$tipoDocumento,"genero"=>$genero,"estadoCivil"=>$estadoCivil);
+        $datos = array("perfil" => $perfil, "tipoDocumento" => $tipoDocumento, "genero" => $genero, "estadoCivil" => $estadoCivil);
         return $datos;
     }
-	}
+}
+
 ?>
