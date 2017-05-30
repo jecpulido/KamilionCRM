@@ -86,14 +86,6 @@ $(document).ready(function () {
             }
         });
     }
-    function peticion(parametros,herramienta) {
-        $.post("http://localhost:8082/KamilionCRM/trunk/KamilionCRM/Models/listas.php",parametros).done(function (respuesta) {
-            $(herramienta).html(respuesta);
-            if ($(herramienta).val() == null) {
-                llenar(herramienta);
-            }
-        });
-    }
 
     function llenar(herramienta) {
         var option=document.createElement("option");

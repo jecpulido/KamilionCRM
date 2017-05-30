@@ -78,9 +78,11 @@ class inboundController
                 $this->crmInbound->set("crm_Barrio", Filtro::filtro_string($_POST['crm_Barrio']));
                 $this->crmInbound->set("crm_Inconsistencia", Filtro::filtro_string($_POST['crm_Inconsistencia']));
                 $this->crmInbound->add();
+                $_SESSION["Mensaje"] = "<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>Caso ".$_POST['inb_Caso']." registrado con exito</div>";
+
             }
         } catch (\Exception $exception) {
-            $_SESSION["Error"] = $exception->getMessage();
+            $_SESSION["Mensaje"] = "<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button> ".$exception->getMessage()."</div>";
         }
 
     }
@@ -125,6 +127,7 @@ class inboundController
                 $this->crmInbound->set("crm_Barrio", Filtro::filtro_string($_POST['crm_Barrio']));
                 $this->crmInbound->set("crm_Inconsistencia", Filtro::filtro_string($_POST['crm_Inconsistencia']));
                 $this->crmInbound->add();
+                header("Location: " . URL . "inbound/");
             }
         } catch (\Exception $exception) {
             //echo $exception->getMessage();

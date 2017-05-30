@@ -1,6 +1,7 @@
 <div class="box-principal">
     <fieldset class="panelregistro">
-        <h2 class="page-header">GESTION INBOUND</h2>
+        <h2 class="page-header">GESTION INBOUND |
+            <a href="<?php echo URL;?>inbound/" class="btn btn-default "> Volver</a></h2>
         <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data" id="registroInbound" >
             <div class="panel panel-primary " >
                 <div class="panel-heading">

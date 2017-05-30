@@ -92,8 +92,17 @@ class Inbound
     //Buscar por filtro
     public function verPendientes(){
         try{
-            $this->param = $this->validarAtributos();
             $sql = "SELECT inbound.* FROM inbound  where inb_Estado<>'Cerrado' and inb_Estado NOT LIKE '%Esca%'";
+            $datos = $this->con->selectAvanzado($sql,null);
+            return $datos;
+        }catch (\Exception $exception){
+            throw $exception;
+        }
+    }
+
+    public function verSolicitado(){
+        try{
+            $sql = "SELECT  DATE(inb_FechaIngreso) as Fecha,COUNT(CASE WHEN inb_Estado='Seguimiento' THEN 1 ELSE NULL END ) AS 'Seguimiento',COUNT(CASE WHEN inb_Estado='Programado' THEN 1 ELSE NULL END) AS 'Programado',COUNT( CASE WHEN inb_Estado='No Contactado' THEN 1 ELSE NULL END ) AS 'No Contactado',COUNT( CASE WHEN inb_Estado='Solicitud Escalar SD' THEN 1 ELSE NULL END ) AS 'Solicitud Escalar SD',COUNT( CASE WHEN inb_Estado='Solicitud Escalar CPD' THEN 1 ELSE NULL END ) AS 'Solicitud Escalar CPD',COUNT( CASE WHEN inb_Estado='Cerrado' THEN 1 ELSE NULL END ) AS 'Cerrado', COUNT( CASE WHEN inb_Estado is NOT NULL THEN 1 ELSE NULL END ) AS 'Total' FROM inbound GROUP BY  DATE(inb_FechaIngreso)";
             $datos = $this->con->selectAvanzado($sql,null);
             return $datos;
         }catch (\Exception $exception){

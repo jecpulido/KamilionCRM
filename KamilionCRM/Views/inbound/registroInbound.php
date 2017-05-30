@@ -1,5 +1,12 @@
 <div class="box-principal">
     <fieldset class="panelregistro">
+        <div class="form-group">
+            <?php if (isset($_SESSION['Mensaje'])) { ?>
+                <?php if (($_SESSION['Mensaje'])) { ?>
+                        <strong> <?php echo $_SESSION["Mensaje"];$_SESSION["Mensaje"]=null; ?></strong>
+                <?php } ?>
+            <?php } ?>
+        </div>
         <h2 class="page-header">REGISTRO INBOUND</h2>
         <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data" id="registroInbound">
             <div class="panel panel-primary ">
@@ -9,18 +16,18 @@
                 <fieldset class="panelregistro">
                     <div>
                         <!-- ID AVAYA -->
-                        <div class="form-registro form-group col-md-6">
-                            <label for="inb_IdLlamada" class="control-label">ID AVAYA</label>
+                        <div class="form-registro form-group col-md-6" id="div_inb_IdLlamada">
+                            <label for="inb_IdLlamada" class="control-label" id="lbl_inb_IdLlamada">ID AVAYA</label>
                             <input class="form-control" id="inb_IdLlamada" name="inb_IdLlamada" type="number" required>
                         </div>
                         <!-- caso -->
-                        <div class="form-registro form-group col-md-6">
-                            <label for="inb_Caso" class="control-label">CASO</label>
-                            <input  id="inb_Caso" name="inb_Caso" type="number" class="form-control" required>
+                        <div class="form-registro form-group col-md-6" id="div_inb_Caso">
+                            <label for="inb_Caso" class="control-label" id="lbl_inb_Caso">CASO</label>
+                            <input  id="inb_Caso" name="inb_Caso" type="number" class="form-control"  required>
                         </div>
 
                         <!-- MIN -->
-                        <div class="form-registro form-group col-md-6">
+                        <div class="form-registro form-group col-md-6 ">
                             <label for="inb_MinCliente" class="control-label">MIN</label>
                             <input class="form-control" id="inb_MinCliente" name="inb_MinCliente" type="number">
                         </div>

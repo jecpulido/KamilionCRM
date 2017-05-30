@@ -190,3 +190,14 @@ ALTER TABLE `division_politica` CHANGE `divp_if` `divp_id` INT(11) NOT NULL;
 
 ALTER TABLE `diagnostico` CHANGE `diag_Tipificacion4` `diag_Tipificacion4` VARCHAR(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
 ALTER TABLE `crm_inbound` CHANGE `crm_TPQR` `crm_TPQR` VARCHAR(20) NOT NULL;
+
+SELECT  DATE(inb_FechaIngreso) as Fecha,
+    COUNT(CASE WHEN inb_Estado='Seguimiento' THEN 1 ELSE NULL END ) AS 'Seguimiento',
+    COUNT(CASE WHEN inb_Estado='Programado' THEN 1 ELSE NULL END) AS 'Programado',
+    COUNT( CASE WHEN inb_Estado='No Contactado' THEN 1 ELSE NULL END ) AS 'No Contactado',
+    COUNT( CASE WHEN inb_Estado='Solicitud Escalar SD' THEN 1 ELSE NULL END ) AS 'Solicitud Escalar SD',
+    COUNT( CASE WHEN inb_Estado='Solicitud Escalar CPD' THEN 1 ELSE NULL END ) AS 'Solicitud Escalar CPD',
+    COUNT( CASE WHEN inb_Estado='Cerrado' THEN 1 ELSE NULL END ) AS 'Cerrado',
+    COUNT( CASE WHEN inb_Estado is NOT NULL THEN 1 ELSE NULL END ) AS 'Total'
+FROM inbound
+GROUP BY  DATE(inb_FechaIngreso)
